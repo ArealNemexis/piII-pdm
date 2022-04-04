@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:localization/localization.dart';
+import 'package:obd_app/src/app_theme.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -10,10 +11,12 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LocalJsonLocalization.delegate.directories = ['lib/assets/i18n'];
-
     return MaterialApp.router(
       scrollBehavior: AppScrollBehavior(),
       title: 'app_name'.i18n(),
+      theme: lightTheme,
+      themeMode: ThemeMode.system,
+      darkTheme: darkTheme,
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
