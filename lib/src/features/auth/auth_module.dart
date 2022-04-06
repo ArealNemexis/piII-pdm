@@ -17,5 +17,6 @@ class AuthModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (_, __) => const LoginPage(), children: []),
+        ChildRoute('/getForgotPassword', child: (_, __) => const Forgowt(), children: []),
       ];
 }
