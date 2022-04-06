@@ -38,6 +38,7 @@ flutter:
     - ./lib/assets/i18n/
     - ./lib/assets/images/
     - ./lib/assets/images/car_obd.svg
+    - ./lib/assets/images/locker.svg
   # example:
   # fonts:
   #   - family: Schyler

@@ -20,146 +20,329 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset("lib/assets/images/car_obd.svg"),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.21,
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      padding: EdgeInsets.all(15),
-                      decoration:
-                          BoxDecoration(color: Color.fromRGBO(33, 33, 33, 1)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            child: TextField(
-                              obscureText: true,
-                              onChanged: (value) {
-                                _viewModel.password = value;
-                              },
-                              style: TextStyle(color: Colors.black54),
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                errorBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.only(
-                                    left: 11, bottom: 11, top: 11, right: 11),
-                                labelText: "Senha",
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Stack(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset('lib/assets/images/car_obd.svg'),
+                  ],
+                ),
+                SizedBox(
+                  height: 260,
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(30),
+                      ),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.26,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        decoration: BoxDecoration(
+                          color: Colors.black87,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 43,
+                                ),
+                              ],
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              width: MediaQuery.of(context).size.width * 0.85,
+                              height: 50,
+                              alignment: Alignment.center,
+                              child: Form(
+                                child: TextField(
+                                  obscureText: true,
+                                  onChanged: (value) {
+                                    _viewModel.password = value;
+                                  },
+                                  cursorColor: Colors.white,
+                                  showCursor: false,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                      hintText: "Nova senha",
+                                      hintStyle: TextStyle(
+                                        color: Colors.grey[500],
+                                        fontSize: 20,
+                                      ),
+                                      // fillColor: Colors.grey.shade200,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: (Colors.yellow[700])!,
+                                          width: 2.0,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: (Colors.yellow[700])!,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      filled: true,
+                                      hoverColor: Colors.yellow.shade200,
+                                      contentPadding: EdgeInsets.all(15),
+                                      prefixIcon: Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child: SvgPicture.asset(
+                                          'lib/assets/images/locker.svg',
+                                        ),
+                                      )),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            child: TextField(
-                              obscureText: true,
-                              onChanged: (value) {
-                                _viewModel.passwordConfirm = value;
-                              },
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                errorBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.only(
-                                    left: 11, bottom: 11, top: 11, right: 11),
-                                labelText: "Confirmar Senha",
-                              ),
+                            SizedBox(
+                              height: 10,
                             ),
-                          ),
-                        ],
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              width: MediaQuery.of(context).size.width * 0.85,
+                              height: 50,
+                              alignment: Alignment.center,
+                              child: Form(
+                                child: TextField(
+                                  obscureText: true,
+                                  onChanged: (value) {
+                                    _viewModel.passwordConfirm = value;
+                                  },
+                                  cursorColor: Colors.black,
+                                  showCursor: false,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                      hintText: "Repita a senha",
+                                      hintStyle: TextStyle(
+                                        color: Colors.grey[500],
+                                        fontSize: 20,
+                                      ),
+                                      // fillColor: Colors.grey.shade200,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: (Colors.yellow[700])!,
+                                          width: 2.0,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: (Colors.yellow[700])!,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      filled: true,
+                                      hoverColor: Colors.yellow.shade200,
+                                      contentPadding: EdgeInsets.all(15),
+                                      prefixIcon: Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child: SvgPicture.asset(
+                                          'lib/assets/images/locker.svg',
+                                        ),
+                                      )),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 100, left: 100),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: Size.fromHeight(40),
-                      primary: Color.fromRGBO(250, 195, 0, 1)),
-                  onPressed: () {
-                    _changePassword();
-                    Modular.to.navigate('/');
-                  },
-                  child: const Text('Salvar'),
+                  ],
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 210,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      // height: MediaQuery.of(context).size.height * 0.5,
+                      // width: MediaQuery.of(context).size.width * 0.5,
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_viewModel.password ==
+                              _viewModel.passwordConfirm) {
+                            _changePassword();
+                            Modular.to.navigate('/');
+                          }
+                        },
+                        child: Text(
+                          'Salvar',
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 20,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.yellow[700],
+                            fixedSize: const Size(180, 45),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50))),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
   }
 }
 
-Widget _boxInput(BuildContext context) {
-  return Row(
+Widget _buildContainer(BuildContext context) {
+  return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.21,
-          width: MediaQuery.of(context).size.width * 0.9,
-          padding: EdgeInsets.all(15),
-          decoration: BoxDecoration(color: Color.fromRGBO(33, 33, 33, 1)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                child: TextField(
-                  style: TextStyle(color: Colors.black54),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: "Email",
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.all(
+              Radius.circular(30),
+            ),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.26,
+              width: MediaQuery.of(context).size.width * 0.9,
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 70,
+                      ),
+                      Text(
+                        "insira seu e-mail cadastrado",
+                        style: TextStyle(
+                          color: Colors.yellow[700],
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                  _buildEmail(context),
+                ],
               ),
-              SizedBox(
-                height: 10,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Senha",
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
+      ),
+    ],
+  );
+}
+
+Widget _buildEmail(BuildContext context) {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 15),
+    width: MediaQuery.of(context).size.width * 0.85,
+    height: 50,
+    alignment: Alignment.center,
+    child: Form(
+      child: TextField(
+        cursorColor: Colors.black,
+        showCursor: false,
+        textAlign: TextAlign.center,
+        decoration: InputDecoration(
+            hintText: "Email",
+            hintStyle: TextStyle(
+              color: Colors.grey[500],
+              fontSize: 20,
+            ),
+            // fillColor: Colors.grey.shade200,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: (Colors.yellow[700])!,
+                width: 2.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(
+                color: (Colors.yellow[700])!,
+                width: 1.0,
+              ),
+            ),
+            filled: true,
+            hoverColor: Colors.yellow.shade200,
+            contentPadding: EdgeInsets.only(top: 17, left: 15),
+            prefixIcon: Icon(
+              Icons.email_outlined,
+              color: Colors.black87,
+              size: 35,
+            )),
+      ),
+    ),
+  );
+}
+
+Widget _buildEnviarButton(BuildContext context) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      SizedBox(
+        height: 210,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            // height: MediaQuery.of(context).size.height * 0.5,
+            // width: MediaQuery.of(context).size.width * 0.5,
+            margin: EdgeInsets.only(bottom: 20),
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                'Salvar',
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 20,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.yellow[700],
+                  fixedSize: const Size(180, 45),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50))),
+            ),
+          ),
+        ],
       ),
     ],
   );

@@ -20,17 +20,13 @@ abstract class _NewPasswordViewModelBase with Store {
   String passwordConfirm = '';
 
   Future<int> newPassword() async {
-    if (password == passwordConfirm) {
-      HttpResponse response =
-          await _usecase.newPassword(password, confirmationToken);
-      if (response.status == 200) {
-        Modular.to.navigate('/');
-        return 200;
-      } else {
-        return response.status;
-      }
+    HttpResponse response =
+        await _usecase.newPassword(password, confirmationToken);
+    if (response.status == 200) {
+      Modular.to.navigate('/');
+      return 200;
     } else {
-      return 0;
+      return response.status;
     }
   }
 }
