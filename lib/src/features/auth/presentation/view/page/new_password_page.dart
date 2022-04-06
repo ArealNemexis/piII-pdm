@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:obd_app/src/features/auth/presentation/viewmodel/new_password/new_password_viewmodel.dart';
+import 'package:localization/localization.dart';
 
 class NewPasswordPage extends StatefulWidget {
   NewPasswordPage({Key? key}) : super(key: key);
@@ -83,7 +84,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(color: Colors.white),
                                   decoration: InputDecoration(
-                                      hintText: "Nova senha",
+                                      hintText: "new_password".i18n(),
                                       hintStyle: TextStyle(
                                         color: Colors.grey[500],
                                         fontSize: 20,
@@ -134,7 +135,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(color: Colors.white),
                                   decoration: InputDecoration(
-                                      hintText: "Repita a senha",
+                                      hintText: "new_password_confirm".i18n(),
                                       hintStyle: TextStyle(
                                         color: Colors.grey[500],
                                         fontSize: 20,
@@ -196,7 +197,7 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
                           }
                         },
                         child: Text(
-                          'Salvar',
+                          'save'.i18n(),
                           style: TextStyle(
                             color: Colors.black87,
                             fontSize: 20,
@@ -218,132 +219,4 @@ class _NewPasswordPageState extends State<NewPasswordPage> {
       ),
     );
   }
-}
-
-Widget _buildContainer(BuildContext context) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.all(
-              Radius.circular(30),
-            ),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.26,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 70,
-                      ),
-                      Text(
-                        "insira seu e-mail cadastrado",
-                        style: TextStyle(
-                          color: Colors.yellow[700],
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                  _buildEmail(context),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    ],
-  );
-}
-
-Widget _buildEmail(BuildContext context) {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 15),
-    width: MediaQuery.of(context).size.width * 0.85,
-    height: 50,
-    alignment: Alignment.center,
-    child: Form(
-      child: TextField(
-        cursorColor: Colors.black,
-        showCursor: false,
-        textAlign: TextAlign.center,
-        decoration: InputDecoration(
-            hintText: "Email",
-            hintStyle: TextStyle(
-              color: Colors.grey[500],
-              fontSize: 20,
-            ),
-            // fillColor: Colors.grey.shade200,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: (Colors.yellow[700])!,
-                width: 2.0,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: (Colors.yellow[700])!,
-                width: 1.0,
-              ),
-            ),
-            filled: true,
-            hoverColor: Colors.yellow.shade200,
-            contentPadding: EdgeInsets.only(top: 17, left: 15),
-            prefixIcon: Icon(
-              Icons.email_outlined,
-              color: Colors.black87,
-              size: 35,
-            )),
-      ),
-    ),
-  );
-}
-
-Widget _buildEnviarButton(BuildContext context) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      SizedBox(
-        height: 210,
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            // height: MediaQuery.of(context).size.height * 0.5,
-            // width: MediaQuery.of(context).size.width * 0.5,
-            margin: EdgeInsets.only(bottom: 20),
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'Salvar',
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 20,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.yellow[700],
-                  fixedSize: const Size(180, 45),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50))),
-            ),
-          ),
-        ],
-      ),
-    ],
-  );
 }
