@@ -1,4 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:obd_app/src/features/auth/data/repository/new_password_repository.dart';
+import 'package:obd_app/src/features/auth/domain/repository/new_password_interface.dart';
+import 'package:obd_app/src/features/auth/domain/usecase/new_password_usecase.dart';
+import 'package:obd_app/src/features/auth/presentation/view/page/new_password_page.dart';
+import 'package:obd_app/src/features/auth/presentation/viewmodel/new_password/new_password_viewmodel.dart';
 
 import 'data/repository/login_repository.dart';
 import 'domain/repository/login_interface.dart';
@@ -12,9 +17,15 @@ class AuthModule extends Module {
         Bind.factory((i) => LoginViewModel()),
         Bind.factory((i) => LoginUseCase()),
         Bind.factory<ILogin>((i) => LoginRepository()),
+        Bind.factory((i) => NewPasswordViewModel()),
+        Bind.factory((i) => NewPasswordUseCase()),
+        Bind.factory<INewPassword>((i) => NewPasswordRepository()),
       ];
 
   @override
-  List<ModularRoute> get routes =>
-      [ChildRoute('/', child: (_, __) => const LoginPage(), children: [])];
+  List<ModularRoute> get routes => [
+        ChildRoute('/', child: (_, __) => LoginPage(), children: []),
+        ChildRoute('/new-password',
+            child: (_, __) => NewPasswordPage(), children: [])
+      ];
 }

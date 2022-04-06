@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AlphaColors {
   static const backgroundDark = Color(0x424242DD);
   static const backgroundDarkOn = Color(0x424242FF);
-  static const backgroundLight = Color(0xFFFFFFDD);
+  static const backgroundLight = Color.fromRGBO(33, 33, 33, 1);
   static const backgroundLightOn = Color(0xFFFFFFFF);
 
   static const secondaryDark = Color(0xFFFFFFdd);
@@ -45,8 +45,8 @@ ThemeData get darkTheme => ThemeData.light().copyWith(
         onPrimary: AlphaColors.backgroundDarkOn,
         brightness: Brightness.dark,
         background: AlphaColors.backgroundDark,
-        secondary: AlphaColors.secondaryDark,
-        onSecondary: AlphaColors.secondaryDarkOn,
+        secondary: AlphaColors.backgroundDark,
+        onSecondary: AlphaColors.backgroundDarkOn,
         error: const ColorScheme.dark().error,
         surface: const ColorScheme.dark().surface,
         onBackground: const ColorScheme.dark().onBackground,
