@@ -39,19 +39,19 @@ mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
     });
   }
 
-  final _$confirmPasswordAtom =
-      Atom(name: '_RegistrationViewmodelBase.confirmPassword');
+  final _$passwordConfirmAtom =
+      Atom(name: '_RegistrationViewmodelBase.passwordConfirm');
 
   @override
-  String get confirmPassword {
-    _$confirmPasswordAtom.reportRead();
-    return super.confirmPassword;
+  String get passwordConfirm {
+    _$passwordConfirmAtom.reportRead();
+    return super.passwordConfirm;
   }
 
   @override
-  set confirmPassword(String value) {
-    _$confirmPasswordAtom.reportWrite(value, super.confirmPassword, () {
-      super.confirmPassword = value;
+  set passwordConfirm(String value) {
+    _$passwordConfirmAtom.reportWrite(value, super.passwordConfirm, () {
+      super.passwordConfirm = value;
     });
   }
 
@@ -75,7 +75,7 @@ mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
     return '''
 email: ${email},
 password: ${password},
-confirmPassword: ${confirmPassword},
+passwordConfirm: ${passwordConfirm},
 name: ${name}
     ''';
   }

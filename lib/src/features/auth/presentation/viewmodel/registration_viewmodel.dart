@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-
-import '../../domain/model/userRegistration.dart';
-import '../../domain/repository/registration_interface.dart';
+import 'package:obd_app/src/features/auth/data/dto/http_response/http_response.dart';
+import 'package:obd_app/src/features/auth/domain/model/registration.dart';
+import 'package:obd_app/src/features/auth/domain/usecase/registration_usecase.dart';
 
 part 'registration_viewmodel.g.dart';
 
@@ -10,7 +10,7 @@ class RegistrationViewModel = _RegistrationViewmodelBase
     with _$RegistrationViewModel;
 
 abstract class _RegistrationViewmodelBase with Store {
-  final _usecase = Modular.get<IRegistration>();
+  final _usecase = Modular.get<RegistrationUseCase>();
 
   @observable
   String email = '';
@@ -19,17 +19,19 @@ abstract class _RegistrationViewmodelBase with Store {
   String password = '';
 
   @observable
-  String confirmPassword = '';
-
-  @observable
   String name = '';
 
-  void register() {
-    _usecase.register(UserRegistration(
-      email,
-      password,
-      name,
-      confirmPassword,
-    ));
+  @observable
+  String passwordConfirm = '';
+
+  Future<int> register() async {
+    HttpResponse response =
+        await _usecase.register(email, password, name, passwordConfirm);
+    if (response.status == 200) {
+      Modular.to.navigate("/login");
+      return 200;
+    } else {
+      return response.status;
+    }
   }
 }

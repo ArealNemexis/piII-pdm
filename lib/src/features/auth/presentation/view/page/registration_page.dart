@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:localization/localization.dart';
+import 'package:obd_app/src/features/auth/presentation/viewmodel/registration_viewmodel.dart';
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+  RegistrationPage({Key? key}) : super(key: key);
 
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
+  final _viewModel = Modular.get<RegistrationViewModel>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -66,6 +70,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               alignment: Alignment.center,
                               child: Form(
                                 child: TextField(
+                                  onChanged: (value) {
+                                    _viewModel.name = value;
+                                  },
                                   cursorColor: Colors.white,
                                   showCursor: false,
                                   textAlign: TextAlign.start,
@@ -113,6 +120,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               alignment: Alignment.center,
                               child: Form(
                                 child: TextField(
+                                  onChanged: (value) {
+                                    _viewModel.email = value;
+                                  },
                                   textAlign: TextAlign.start,
                                   style: TextStyle(color: Colors.white),
                                   decoration: InputDecoration(
@@ -159,6 +169,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               child: Form(
                                 child: TextField(
                                   obscureText: true,
+                                  onChanged: (value) {
+                                    _viewModel.password = value;
+                                  },
                                   textAlign: TextAlign.start,
                                   style: TextStyle(color: Colors.white),
                                   decoration: InputDecoration(
@@ -205,6 +218,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               child: Form(
                                 child: TextField(
                                   obscureText: true,
+                                  onChanged: (value) {
+                                    _viewModel.passwordConfirm = value;
+                                  },
                                   textAlign: TextAlign.start,
                                   style: TextStyle(color: Colors.white),
                                   decoration: InputDecoration(
@@ -258,12 +274,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      // height: MediaQuery.of(context).size.height * 0.5,
-                      // width: MediaQuery.of(context).size.width * 0.5,
                       margin: EdgeInsets.only(bottom: 20),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/login');
+                          if (_viewModel.password ==
+                              _viewModel.passwordConfirm) {
+                            _viewModel.register();
+                            Modular.to.navigate('/login');
+                          }
                         },
                         child: Text(
                           'Register'.i18n(),
