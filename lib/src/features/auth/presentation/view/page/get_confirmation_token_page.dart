@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(ForgowtPassord());
+void main() => runApp(GetConfirmationToken());
 
-class ForgotPassword extends StatelessWidget {
+class ConfirmationTokenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'login App',
       debugShowCheckedModeBanner: false,
-      home: ForgotPassword(),
+      home: GetConfirmationToken(),
     );
   }
 }
 
-class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({Key? key}) : super(key: key);
+class GetConfirmationToken extends StatefulWidget {
+  const GetConfirmationToken({Key? key}) : super(key: key);
 
   @override
-  State<ForgotPassword> createState() => _loginPageState();
+  State<GetConfirmationToken> createState() => _loginPageState();
 }
 
-class _loginPageState extends State<ForgotPassword> {
+class _loginPageState extends State<GetConfirmationToken> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

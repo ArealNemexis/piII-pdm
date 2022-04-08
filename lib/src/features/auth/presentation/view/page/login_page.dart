@@ -22,11 +22,11 @@ class _LoginPageState extends State<LoginPage> {
         width: double.infinity,
         color: Colors.blueGrey[50],
         child: Center(
-          child: Text(
-            'CREATE YOUR LOGIN HERE!',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline2,
-          ),
+          child: ElevatedButton(
+            onPressed: () { Modular.to.navigate("/getForgotPassword"); },
+            child: Text('entrar'),
+
+          )
         ),
       ),
     );
