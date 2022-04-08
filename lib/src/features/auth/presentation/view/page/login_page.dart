@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
@@ -127,7 +125,7 @@ Widget _buildSenha(BuildContext context) {
     width: MediaQuery.of(context).size.width * 0.85,
     height: 50,
     alignment: Alignment.center,
-    child: const Form(
+    child: Form(
       child: TextField(
           cursorColor: Colors.black,
           showCursor: false,
@@ -136,7 +134,13 @@ Widget _buildSenha(BuildContext context) {
           keyboardType: TextInputType.text,
           style: TextStyle(color: Color(0xFF757575), fontSize: 20),
           decoration: InputDecoration(
-            prefix: Icon(Icons.password_outlined, color: Colors.black),
+            prefixIcon: Padding(
+              padding: EdgeInsets.all(13.0),
+              child: SvgPicture.asset(
+                "lib/assets/images/locker.svg",
+                color: Colors.black,
+              ),
+            ),
             // prefixIcon: Padding(
             //   padding: EdgeInsets.all(8),
             //   child: SvgPicture.asset('lib/assets/images/locker.svg'),
