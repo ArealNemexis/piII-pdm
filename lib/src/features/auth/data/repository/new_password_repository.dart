@@ -18,7 +18,7 @@ class NewPasswordRepository implements INewPassword {
             headers: {"Content-Type": "application/json"},
             body: jsonEncode({
               "password": newPassword.password,
-              "confirmationToken": "1a2e76c8-4e96-454a-b4ee-39576b66c4d5",
+              "confirmationToken": "0dfdabac-dddf-4034-b364-a43cf54e4581",
             }),
             encoding: Encoding.getByName("utf-8"));
 
