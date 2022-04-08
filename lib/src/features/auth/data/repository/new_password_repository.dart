@@ -1,10 +1,10 @@
 import 'dart:convert' show Encoding, jsonDecode, jsonEncode;
 
+import 'package:dio/dio.dart';
 import 'package:obd_app/src/features/auth/data/dto/http_response/http_response.dart';
 import 'package:obd_app/src/features/auth/domain/model/user.dart';
 import 'package:obd_app/src/features/auth/domain/model/new_password.dart';
 import 'package:obd_app/src/features/auth/domain/repository/new_password_interface.dart';
-import 'package:http/http.dart' as http;
 
 class NewPasswordRepository implements INewPassword {
   @override
@@ -13,17 +13,20 @@ class NewPasswordRepository implements INewPassword {
   }
 
   Future<HttpResponse> callBackend(NewPasswordDTO newPassword) async {
-    final response =
-        await http.post(Uri.parse('http://10.0.2.2:8080/auth/recover-password'),
-            headers: {"Content-Type": "application/json"},
-            body: jsonEncode({
-              "password": newPassword.password,
-              "confirmationToken": "1a2e76c8-4e96-454a-b4ee-39576b66c4d5",
-            }),
-            encoding: Encoding.getByName("utf-8"));
+    Dio dio = new Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    try {
+      final response =
+          await dio.post('http://10.0.2.2:8080/auth/recover-password', data: {
+        "password": newPassword.password,
+        "confirmationToken": "0dfdabac-dddf-4034-b364-a43cf54e4581",
+      });
+      print(response.data.toString());
+      return HttpResponse.fromJson(jsonDecode(response.data.toString()));
+    } on DioError catch (e) {
+      print(e.response.toString());
 
-    print(response.body);
-
-    return HttpResponse.fromJson(jsonDecode(response.body));
+      return HttpResponse.fromJson(jsonDecode(e.response.toString()));
+    }
   }
 }
