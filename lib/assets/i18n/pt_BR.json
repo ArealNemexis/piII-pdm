@@ -1,3 +1,8 @@
 {
-    "app_name": "Aplicativo Obd"
+    "app_name": "Aplicativo Obd",
+    "login": "Logar",
+    "divider_text": "ou",
+    "forget_pass": "Esqueci a Senha",
+    "register": "Criar Conta",
+    "pass": "Senha"
 }
