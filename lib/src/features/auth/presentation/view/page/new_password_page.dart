@@ -32,7 +32,7 @@ class _NewPasswordPageState
     _colors = _theme.colorScheme;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: _theme.colorScheme.background,
         body: Stack(
           children: [_mainLogo, _newPasswordFormInput, _buttonSave],
         ),
@@ -61,14 +61,14 @@ class _NewPasswordPageState
         height: 50,
         alignment: Alignment.center,
         child: Form(
-          child: TextField(
+          child: TextFormField(
+            autofocus: true,
             obscureText: true,
             onChanged: (value) {
               _viewModel.password = value;
             },
             cursorColor: Colors.white,
             showCursor: false,
-            textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 hintText: "new_password".i18n(),
@@ -81,14 +81,14 @@ class _NewPasswordPageState
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: (Colors.yellow[700])!,
-                    width: 2.0,
+                    width: 1.0,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: (Colors.yellow[700])!,
-                    width: 1.0,
+                    width: 2.0,
                   ),
                 ),
                 filled: true,
@@ -117,7 +117,6 @@ class _NewPasswordPageState
             },
             cursorColor: Colors.black,
             showCursor: false,
-            textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 hintText: "new_password_confirm".i18n(),
@@ -126,18 +125,20 @@ class _NewPasswordPageState
                   fontSize: 20,
                 ),
                 errorText: store.error.passwordConfirm,
+                errorStyle:
+                    TextStyle(backgroundColor: Colors.white, color: Colors.red),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: (Colors.yellow[700])!,
-                    width: 2.0,
+                    width: 1.0,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: (Colors.yellow[700])!,
-                    width: 1.0,
+                    width: 2.0,
                   ),
                 ),
                 filled: true,
@@ -177,15 +178,15 @@ class _NewPasswordPageState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: 43,
+                            height: 33,
                           ),
                         ],
                       ),
                       _passwordInput,
                       SizedBox(
-                        height: 10,
+                        height: 30,
                       ),
-                      _confirmPasswordInput
+                      _confirmPasswordInput,
                     ],
                   ),
                 ),
@@ -217,11 +218,6 @@ class _NewPasswordPageState
                       fontSize: 20,
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.yellow[700],
-                      fixedSize: const Size(180, 45),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50))),
                 ),
               ),
             ],

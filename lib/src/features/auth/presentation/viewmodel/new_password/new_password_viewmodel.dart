@@ -46,6 +46,7 @@ abstract class _NewPasswordViewModelBase with Store {
   }
 
   Future<HttpResponse?> newPassword() async {
+    print("chamei");
     validateForm();
     if (!error.hasErrors) {
       HttpResponse response =
