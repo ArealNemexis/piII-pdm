@@ -89,7 +89,10 @@ class _NewPasswordPageState
             },
             cursorColor: Colors.white,
             showCursor: false,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+                color: _theme.brightness == Brightness.dark
+                    ? Colors.black87
+                    : Colors.white60),
             decoration: InputDecoration(
                 hintText: "new_password".i18n(),
                 hintStyle: TextStyle(
@@ -138,7 +141,10 @@ class _NewPasswordPageState
             },
             cursorColor: Colors.black,
             showCursor: false,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+                color: _theme.brightness == Brightness.dark
+                    ? Colors.black87
+                    : Colors.white60),
             decoration: InputDecoration(
                 hintText: "new_password_confirm".i18n(),
                 hintStyle: TextStyle(
