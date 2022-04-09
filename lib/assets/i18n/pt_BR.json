@@ -6,5 +6,7 @@
     "register": "Cadastre-se",
     "new_password": "Nova senha",
     "new_password_confirm": "Repita a senha",
-    "save": "Salvar"
+    "save": "Salvar",
+    "forget_pass": "Esqueci a Senha",
+    "divider_text": "ou"
 }
