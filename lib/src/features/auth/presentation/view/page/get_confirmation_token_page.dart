@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../../viewmodel/get_confirm_token_viewmodel.dart';
 
 void main() => runApp(GetConfirmationToken());
 
@@ -20,25 +24,30 @@ class GetConfirmationToken extends StatefulWidget {
   State<GetConfirmationToken> createState() => _loginPageState();
 }
 
-class _loginPageState extends State<GetConfirmationToken> {
+class _loginPageState extends ModularState<GetConfirmationToken,
+    ConfirmationTokenViewModel> {
+  final _viewModel = Modular.get<ConfirmationTokenViewModel>();
+  late ColorScheme _colors;
+  late ThemeData _theme;
+
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey[800],
         body: Stack(
           children: [
-            _buildContainer(context),
-            _buildEnviarButton(context)
+            _mainLogo,
+            _buildContainer,
+            _buildEnviarButton
           ],
         ),
       ),
     );
   }
-}
 
-Widget _buildContainer(BuildContext context) {
-  return Column(
+Widget get _buildContainer=> Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Row(
@@ -70,7 +79,7 @@ Widget _buildContainer(BuildContext context) {
                       ),
                     ],
                   ),
-                  _buildEmail(context),
+                  _buildEmail,
                 ],
               ),
             ),
@@ -79,10 +88,20 @@ Widget _buildContainer(BuildContext context) {
       ),
     ],
   );
-}
 
-Widget _buildEmail(BuildContext context) {
-  return Container(
+Widget get _mainLogo => Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset('lib/assets/images/car_obd.svg'),
+      ],
+    ),
+  ],
+);
+
+Widget get _buildEmail => Container(
     padding: EdgeInsets.symmetric(horizontal: 15),
     width: MediaQuery.of(context).size.width * 0.85,
     height: 50,
@@ -113,15 +132,13 @@ Widget _buildEmail(BuildContext context) {
             filled: true,
             hoverColor: Colors.yellow.shade200,
             contentPadding: EdgeInsets.only(top: 17, left: 15),
-            suffixIcon: Icon(Icons.email_outlined,color: Colors.black87,size: 35,)
+            prefixIcon: Icon(Icons.email_outlined,color: Colors.black87,size: 35,)
         ),
       ),
     ),
   );
-}
 
-Widget _buildEnviarButton (BuildContext context) {
-  return Column(
+Widget get _buildEnviarButton => Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       SizedBox(height: 200,),
@@ -146,4 +163,5 @@ Widget _buildEnviarButton (BuildContext context) {
       ),
     ],
   );
+
 }

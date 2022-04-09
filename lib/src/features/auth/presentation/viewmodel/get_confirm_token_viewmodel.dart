@@ -16,7 +16,7 @@ abstract class _ConfirmationTokenViewModelBase with Store{
   @observable
   String email = '';
 
-  void getConfirmationToken(){
+ /* void getConfirmationToken(){
     _usecase.getConfirmationToken(ConfirmationToken(email));
-  }
+  }*/
 }
