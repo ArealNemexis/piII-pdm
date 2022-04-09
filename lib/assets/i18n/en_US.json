@@ -4,5 +4,12 @@
     "divider_text": "or",
     "forget_pass": "Forget Password",
     "register": "Register",
-    "pass": "Password"
+    "pass": "Password",
+    "email": "Email",
+    "password": "Password",
+    "enter": "Enter",
+    "register": "Sign up",
+    "new_password": "New password",
+    "new_password_confirm": "Repeat the password",
+    "save": "Save"
 }

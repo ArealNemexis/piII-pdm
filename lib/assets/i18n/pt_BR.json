@@ -4,5 +4,12 @@
     "divider_text": "ou",
     "forget_pass": "Esqueci a Senha",
     "register": "Criar Conta",
-    "pass": "Senha"
+    "pass": "Senha",
+    "email": "Email",
+    "password": "Senha",
+    "enter": "Entrar",
+    "register": "Cadastre-se",
+    "new_password": "Nova senha",
+    "new_password_confirm": "Repita a senha",
+    "save": "Salvar"
 }

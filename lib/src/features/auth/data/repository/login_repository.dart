@@ -1,3 +1,7 @@
+
+import 'dart:convert';
+import 'dart:convert' show jsonDecode;
+
 import 'package:dio/dio.dart';
 import 'package:obd_app/src/features/auth/data/dto/login_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +17,8 @@ class LoginRepository implements ILogin {
 
   Future<int?> callBackend(User user) async {
     final prefs = await SharedPreferences.getInstance();
-    Dio dio = Dio();
+
+    Dio dio = new Dio();
     dio.options.headers['content-Type'] = 'application/json';
 
     try {
