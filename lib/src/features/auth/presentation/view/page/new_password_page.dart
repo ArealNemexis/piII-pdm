@@ -6,6 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobx/mobx.dart';
 import 'package:obd_app/src/features/auth/data/dto/http_response/http_response.dart';
+import 'package:obd_app/src/common/buttons.dart';
 import 'package:obd_app/src/features/auth/presentation/viewmodel/new_password/new_password_viewmodel.dart';
 import 'package:localization/localization.dart';
 
@@ -26,6 +27,10 @@ class _NewPasswordPageState
     HttpResponse? response = await _viewModel.newPassword();
   }
 
+  void _goToLogin() {
+    Modular.to.navigate("/");
+  }
+
   @override
   Widget build(BuildContext context) {
     _theme = Theme.of(context);
@@ -34,11 +39,26 @@ class _NewPasswordPageState
       child: Scaffold(
         backgroundColor: _theme.colorScheme.background,
         body: Stack(
-          children: [_mainLogo, _newPasswordFormInput, _buttonSave],
+          children: [
+            _mainLogo,
+            _newPasswordFormInput,
+            _buttonSave,
+          ],
         ),
       ),
     );
   }
+
+  Widget get _secondaryButton => widget.secondaryButton(
+      theme: _theme,
+      onPressedF: _goToLogin,
+      textButton: Text(
+        "Secondary",
+        style: TextStyle(
+            color: _theme.brightness == Brightness.dark
+                ? Color.fromRGBO(251, 192, 45, 1)
+                : Colors.black87),
+      ));
 
   Widget get _mainLogo => Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -73,7 +93,7 @@ class _NewPasswordPageState
             decoration: InputDecoration(
                 hintText: "new_password".i18n(),
                 hintStyle: TextStyle(
-                  color: Colors.grey[500],
+                  color: Colors.grey[700],
                   fontSize: 20,
                 ),
                 errorText: store.error.password,
@@ -81,14 +101,14 @@ class _NewPasswordPageState
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: (Colors.yellow[700])!,
-                    width: 1.0,
+                    width: 2.0,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: (Colors.yellow[700])!,
-                    width: 2.0,
+                    width: 3.0,
                   ),
                 ),
                 filled: true,
@@ -98,6 +118,7 @@ class _NewPasswordPageState
                   padding: const EdgeInsets.all(8),
                   child: SvgPicture.asset(
                     'lib/assets/images/locker.svg',
+                    color: _theme.colorScheme.secondary,
                   ),
                 )),
           ),
@@ -121,7 +142,7 @@ class _NewPasswordPageState
             decoration: InputDecoration(
                 hintText: "new_password_confirm".i18n(),
                 hintStyle: TextStyle(
-                  color: Colors.grey[500],
+                  color: Colors.grey[700],
                   fontSize: 20,
                 ),
                 errorText: store.error.passwordConfirm,
@@ -131,14 +152,14 @@ class _NewPasswordPageState
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: (Colors.yellow[700])!,
-                    width: 1.0,
+                    width: 2.0,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: (Colors.yellow[700])!,
-                    width: 2.0,
+                    width: 3.0,
                   ),
                 ),
                 filled: true,
@@ -148,6 +169,7 @@ class _NewPasswordPageState
                   padding: const EdgeInsets.all(8),
                   child: SvgPicture.asset(
                     'lib/assets/images/locker.svg',
+                    color: _theme.colorScheme.secondary,
                   ),
                 )),
           ),
@@ -168,7 +190,7 @@ class _NewPasswordPageState
                   height: MediaQuery.of(context).size.height * 0.26,
                   width: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
-                    color: Colors.black87,
+                    color: _theme.colorScheme.onBackground,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -200,7 +222,7 @@ class _NewPasswordPageState
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: 210,
+            height: 270,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -214,7 +236,6 @@ class _NewPasswordPageState
                   child: Text(
                     'save'.i18n(),
                     style: TextStyle(
-                      color: Colors.black87,
                       fontSize: 20,
                     ),
                   ),
@@ -222,6 +243,7 @@ class _NewPasswordPageState
               ),
             ],
           ),
+          _secondaryButton
         ],
       );
 }

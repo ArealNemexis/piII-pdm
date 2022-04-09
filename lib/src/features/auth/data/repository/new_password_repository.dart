@@ -2,7 +2,6 @@ import 'dart:convert' show Encoding, jsonDecode, jsonEncode;
 
 import 'package:dio/dio.dart';
 import 'package:obd_app/src/features/auth/data/dto/http_response/http_response.dart';
-import 'package:obd_app/src/features/auth/domain/model/user.dart';
 import 'package:obd_app/src/features/auth/domain/model/new_password.dart';
 import 'package:obd_app/src/features/auth/domain/repository/new_password_interface.dart';
 
