@@ -9,7 +9,9 @@ class RegistrationRepository implements IRegistration {
   }
 
   Future<int?> callBackend(RegistrationDTO registration) async {
-    Dio dio = Dio();
+
+    Dio dio = new Dio();
+
     dio.options.headers['content-Type'] = 'application/json';
     try {
       final response = await dio.post(

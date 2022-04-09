@@ -1,5 +1,10 @@
 {
     "app_name": "Obd Aplication",
+    "login": "Login",
+    "divider_text": "or",
+    "forget_pass": "Forget Password",
+    "register": "Register",
+    "pass": "Password",
     "email": "Email",
     "password": "Password",
     "enter": "Enter",
