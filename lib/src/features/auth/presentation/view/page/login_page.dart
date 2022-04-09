@@ -22,6 +22,10 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
     _viewModel.login();
   }
 
+  void _register() {
+    Modular.to.navigate("/register");
+  }
+
   Widget get _mainLogo => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -32,6 +36,26 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
             ],
           ),
         ],
+      );
+
+  Widget get _buildForgotPassword => Padding(
+        padding: const EdgeInsets.only(bottom: 15, top: 0),
+        child: Row(
+          children: [
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(
+                    color: Color.fromRGBO(255, 191, 0, 1), fontSize: 18),
+              ),
+              onPressed: () {},
+              child: Text(
+                'forget_pass'.i18n(),
+                textAlign: TextAlign.left,
+                style: const TextStyle(color: Color.fromRGBO(255, 191, 0, 1)),
+              ),
+            ),
+          ],
+        ),
       );
 
   Widget get _emailInput => Padding(
@@ -91,7 +115,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
       );
 
   Widget get _passwordInput => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
           width: MediaQuery.of(context).size.width * 0.85,
@@ -173,12 +197,25 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                     children: [
                       _emailInput,
                       _passwordInput,
+                      _buildForgotPassword
                     ],
                   ),
                 ),
               ),
             ],
           ),
+        ],
+      );
+
+  Widget get _buildDivider => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text('divider_text'.i18n(),
+              style: const TextStyle(
+                  color: Color.fromRGBO(209, 169, 24, 1), fontSize: 23)
+              // style: _theme.textTheme.headline6,
+              ),
         ],
       );
 
@@ -214,12 +251,13 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                     ),
                   ),
                 ]),
+                _buildDivider,
                 Padding(
-                  padding: const EdgeInsets.only(top: 15),
+                  padding: const EdgeInsets.only(top: 5),
                   child: widget.secondaryButton(
                       theme: _theme,
                       onPressedF: () {
-                        _login();
+                        _register();
                       },
                       textButton: Text(
                         "register".i18n(),
