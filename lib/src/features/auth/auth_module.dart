@@ -1,4 +1,14 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:obd_app/src/features/auth/data/repository/new_password_repository.dart';
+import 'package:obd_app/src/features/auth/data/repository/registration_Repository.dart';
+import 'package:obd_app/src/features/auth/domain/repository/new_password_interface.dart';
+import 'package:obd_app/src/features/auth/domain/repository/registration_interface.dart';
+import 'package:obd_app/src/features/auth/domain/usecase/new_password_usecase.dart';
+import 'package:obd_app/src/features/auth/domain/usecase/registration_usecase.dart';
+import 'package:obd_app/src/features/auth/presentation/view/page/new_password_page.dart';
+import 'package:obd_app/src/features/auth/presentation/view/page/registration_page.dart';
+import 'package:obd_app/src/features/auth/presentation/viewmodel/new_password/new_password_viewmodel.dart';
+import 'package:obd_app/src/features/auth/presentation/viewmodel/registration_viewmodel.dart';
 
 import 'package:obd_app/src/features/auth/data/repository/new_password_repository.dart';
 import 'package:obd_app/src/features/auth/data/repository/registration_Repository.dart';

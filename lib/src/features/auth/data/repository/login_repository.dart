@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:convert' show jsonDecode;
 
@@ -17,7 +16,6 @@ class LoginRepository implements ILogin {
 
   Future<int?> callBackend(User user) async {
     final prefs = await SharedPreferences.getInstance();
-
     Dio dio = new Dio();
     dio.options.headers['content-Type'] = 'application/json';
 
