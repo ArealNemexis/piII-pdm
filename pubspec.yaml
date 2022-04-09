@@ -53,6 +53,7 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+
   fonts:
     - family: Inter
       fonts:
@@ -65,5 +66,4 @@ flutter:
           weight: 600
         - asset: lib/assets/fonts/Inter/Inter-Thin.ttf
           weight: 100
-        
 

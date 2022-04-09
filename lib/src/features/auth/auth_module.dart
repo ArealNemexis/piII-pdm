@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:obd_app/src/features/auth/data/repository/new_password_repository.dart';
 import 'package:obd_app/src/features/auth/data/repository/registration_Repository.dart';
 import 'package:obd_app/src/features/auth/domain/repository/new_password_interface.dart';
@@ -13,7 +14,6 @@ import 'package:obd_app/src/features/auth/presentation/viewmodel/registration_vi
 import 'data/repository/login_repository.dart';
 import 'domain/repository/login_interface.dart';
 import 'domain/usecase/login_usecase.dart';
-import 'presentation/view/page/login_page.dart';
 import 'presentation/viewmodel/login_viewmodel.dart';
 
 class AuthModule extends Module {

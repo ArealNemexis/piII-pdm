@@ -91,7 +91,7 @@ mixin _$LoginError on _LoginErrorBase, Store {
   String toString() {
     return '''
 email: ${email},
-password: ${password},
+password: ${password}
 hasErrors: ${hasErrors}
     ''';
   }
