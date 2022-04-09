@@ -23,22 +23,30 @@ class _LoginPageState extends State<LoginPage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 66, 66, 66),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildImgCarro(context),
-            const SizedBox(
-              height: 20,
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildImgCarro(context),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.37,
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      _buildContainer(context),
+                      _buildLoginButton(context),
+                    ],
+                  ),
+                ),
+                _builDivider,
+                const SizedBox(
+                  height: 10,
+                ),
+                _buildCadastrarButton(context),
+              ],
             ),
-            _buildContainer(context),
-            _buildEnviarButton(context),
-            const SizedBox(
-              height: 10,
-            ),
-            _builDivider,
-            _buildCadastrarButton(context),
-          ],
+          ),
         ),
       ),
     );
@@ -46,11 +54,14 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 Widget _buildImgCarro(BuildContext context) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      SvgPicture.asset("lib/assets/images/car_obd.svg"),
-    ],
+  return Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset("lib/assets/images/car_obd.svg"),
+      ],
+    ),
   );
 }
 
@@ -74,19 +85,16 @@ Widget _buildContainer(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 20,
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: _buildEmail(context),
                   ),
-                  _buildEmail(context),
-                  const SizedBox(
-                    height: 10,
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: _buildSenha(context),
                   ),
-                  _buildSenha(context),
                   Column(
                     children: [
-                      const SizedBox(
-                          // height: 50,
-                          ),
                       _buildEsqSenha(context),
                     ],
                   ),
@@ -132,23 +140,17 @@ Widget _buildSenha(BuildContext context) {
           autofocus: false,
           obscureText: true,
           keyboardType: TextInputType.text,
-          style: TextStyle(color: Color(0xFF757575), fontSize: 20),
+          style: const TextStyle(color: Color(0xFF757575), fontSize: 20),
           decoration: InputDecoration(
             prefixIcon: Padding(
-              padding: EdgeInsets.all(13.0),
+              padding: const EdgeInsets.all(13.0),
               child: SvgPicture.asset(
                 "lib/assets/images/locker.svg",
                 color: Colors.black,
               ),
             ),
-            // prefixIcon: Padding(
-            //   padding: EdgeInsets.all(8),
-            //   child: SvgPicture.asset('lib/assets/images/locker.svg'),
-            // ),
-            // labelText: Text('pass'.i18n()),
-            // )
             labelText: 'Senha',
-            labelStyle: TextStyle(color: Color(0xFF757575)),
+            labelStyle: const TextStyle(color: Color(0xFF757575)),
           )),
     ),
   );
@@ -173,13 +175,13 @@ Widget _buildEsqSenha(BuildContext context) {
   );
 }
 
-Widget _buildEnviarButton(BuildContext context) {
+Widget _buildLoginButton(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       const SizedBox(
-          // height: 20,
-          ),
+        height: 150,
+      ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -213,9 +215,6 @@ Widget get _builDivider => Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
-        const SizedBox(
-          height: 20,
-        ),
         Text('divider_text'.i18n(),
             style: const TextStyle(
                 color: Color.fromRGBO(209, 169, 24, 1), fontSize: 23)
@@ -228,40 +227,25 @@ Widget _buildCadastrarButton(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      const SizedBox(
-        height: 20,
-      ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            // BorderRadius: BorderRadius.circular(50),
-            decoration: const BoxDecoration(
-              border: Border(
-                top: BorderSide(width: 3.0, color: Color(0xFFFFC107)),
-                left: BorderSide(width: 3.0, color: Color(0xFFFFC107)),
-                right: BorderSide(width: 3.0, color: Color(0xFFFFC107)),
-                bottom: BorderSide(width: 3.0, color: Color(0xFFFFC107)),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text(
+              'register'.i18n(),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 25,
               ),
             ),
-            // height: MediaQuery.of(context).size.height * 0.5,
-            // width: MediaQuery.of(context).size.width * 0.5,
-            // margin: EdgeInsets.only(bottom: 20),
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'register'.i18n(),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 66, 66, 66),
-                  fixedSize: const Size(200, 65),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50))),
-            ),
+            style: ElevatedButton.styleFrom(
+                primary: const Color.fromARGB(255, 66, 66, 66),
+                fixedSize: const Size(200, 65),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    side: const BorderSide(
+                        color: Color(0xFFFFC107), width: 3.0))),
           ),
         ],
       ),
