@@ -36,6 +36,7 @@ class AuthModule extends Module {
         ChildRoute('/register',
             child: (_, __) => RegistrationPage(), children: []),
         ChildRoute('/new-password',
-            child: (_, __) => NewPasswordPage(), children: [])
+            child: (_, __) => NewPasswordPage(), children: []),
+        // ModuleRoute('/home', module: HomeModule())
       ];
 }

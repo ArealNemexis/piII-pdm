@@ -15,14 +15,27 @@ abstract class _LoginViewModelBase with Store {
   @observable
   String password = '';
 
-  void login() async {
-    //TODO: Validate email
-    //TODO: Validate password
+  @action
+  void validateNotEmptyLogin() {
+    error.clear();
+    error.email = _usecase.validateNotEmpty(email);
+    error.password = _usecase.validateNotEmpty(password);
+  }
 
-    try {
-      await _usecase.login(email, password);
-    } on UnimplementedError {
-      print('Put the error message in an observable instance field.');
+  void login() async {
+    validateNotEmptyLogin();
+    if (!error.hasErrors) {
+      try {
+        int? val = await _usecase.login(email, password);
+        print(val);
+        if (val == 200) {
+          Modular.to.navigate('/register');
+        }
+      } catch (e) {
+        error.email = "erro ${e.toString()}";
+      }
+    } else {
+      print("errr");
     }
   }
 }

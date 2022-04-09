@@ -15,7 +15,7 @@ class AppWidget extends StatelessWidget {
       scrollBehavior: AppScrollBehavior(),
       title: 'app_name'.i18n(),
       theme: lightTheme,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       darkTheme: darkTheme,
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

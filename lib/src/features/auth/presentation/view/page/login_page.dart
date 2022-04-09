@@ -18,6 +18,10 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
   late ColorScheme _colors;
   late ThemeData _theme;
 
+  void _login() {
+    _viewModel.login();
+  }
+
   Widget get _mainLogo => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -27,9 +31,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
               SvgPicture.asset('lib/assets/images/car_obd.svg'),
             ],
           ),
-          // SizedBox(
-          //   height: 260,
-          // ),
         ],
       );
 
@@ -42,13 +43,17 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
           alignment: Alignment.center,
           child: Form(
             child: TextFormField(
-              obscureText: true,
               onChanged: (value) {
-                _viewModel.password = value;
+                _viewModel.email = value;
               },
-              cursorColor: Colors.white,
+              cursorColor: _theme.brightness == Brightness.dark
+                  ? Colors.black87
+                  : Colors.white60,
               showCursor: false,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                  color: _theme.brightness == Brightness.dark
+                      ? Colors.black87
+                      : Colors.white60),
               decoration: InputDecoration(
                   hintText: "email".i18n(),
                   hintStyle: TextStyle(
@@ -98,9 +103,14 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
               onChanged: (value) {
                 _viewModel.password = value;
               },
-              cursorColor: Colors.white,
+              cursorColor: _theme.brightness == Brightness.dark
+                  ? Colors.black87
+                  : Colors.white60,
               showCursor: false,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                  color: _theme.brightness == Brightness.dark
+                      ? Colors.black87
+                      : Colors.white60),
               decoration: InputDecoration(
                   hintText: "password".i18n(),
                   hintStyle: TextStyle(
@@ -181,7 +191,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
         body: Container(
           height: double.infinity,
           width: double.infinity,
-          color: Colors.blueGrey[50],
+          color: _theme.colorScheme.background,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -199,7 +209,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
-                        Modular.to.navigate('/new-password');
+                        _login();
                       },
                     ),
                   ),
@@ -209,7 +219,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                   child: widget.secondaryButton(
                       theme: _theme,
                       onPressedF: () {
-                        Modular.to.navigate('/register');
+                        _login();
                       },
                       textButton: Text(
                         "register".i18n(),

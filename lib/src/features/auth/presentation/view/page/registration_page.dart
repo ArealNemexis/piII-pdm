@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:localization/localization.dart';
 import 'package:obd_app/src/features/auth/presentation/viewmodel/registration_viewmodel.dart';
+import 'package:obd_app/src/common/buttons.dart';
 
 import '../../../data/dto/http_response/http_response.dart';
 
@@ -30,8 +31,25 @@ class _RegistrationPageState
     return SafeArea(
       child: Scaffold(
         backgroundColor: _theme.colorScheme.background,
-        body: Stack(
-          children: [_mainLogo, _registrationForm, _buttonRegister],
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Column(
+                      children: [
+                        _mainLogo,
+                        _registrationForm,
+                      ],
+                    ),
+                    _buttonRegister,
+                  ],
+                ),
+                _buttonGoToLogin
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -40,14 +58,14 @@ class _RegistrationPageState
   Widget get _mainLogo => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset('lib/assets/images/car_obd.svg'),
             ],
           ),
           SizedBox(
-            height: 400,
+            height: 5,
           ),
         ],
       );
@@ -59,7 +77,6 @@ class _RegistrationPageState
         alignment: Alignment.center,
         child: Form(
           child: TextFormField(
-            autofocus: true,
             onChanged: (value) {
               _viewModel.name = value;
             },
@@ -249,7 +266,7 @@ class _RegistrationPageState
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 20),
+                margin: EdgeInsets.only(bottom: 5),
                 child: ElevatedButton(
                   onPressed: () {
                     if (_viewModel.password == _viewModel.passwordConfirm) {
@@ -263,17 +280,25 @@ class _RegistrationPageState
                       fontSize: 20,
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.yellow[700],
-                      fixedSize: const Size(180, 45),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50))),
                 ),
               ),
             ],
           ),
         ],
       );
+
+  Widget get _buttonGoToLogin => widget.secondaryButton(
+      onPressedF: () {
+        Modular.to.navigate("/");
+      },
+      textButton: Text(
+        "Login",
+        style: TextStyle(
+            color: _theme.brightness == Brightness.dark
+                ? Color.fromRGBO(251, 192, 45, 1)
+                : Colors.black87),
+      ),
+      theme: _theme);
 
   Widget get _registrationForm => Column(
         mainAxisAlignment: MainAxisAlignment.center,
