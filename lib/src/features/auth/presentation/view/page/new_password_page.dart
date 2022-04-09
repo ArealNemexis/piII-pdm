@@ -1,10 +1,6 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobx/mobx.dart';
 import 'package:obd_app/src/features/auth/data/dto/http_response/http_response.dart';
 import 'package:obd_app/src/common/buttons.dart';
 import 'package:obd_app/src/features/auth/presentation/viewmodel/new_password/new_password_viewmodel.dart';
@@ -75,109 +71,108 @@ class _NewPasswordPageState
         ],
       );
 
-  Widget get _passwordInput => Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        width: MediaQuery.of(context).size.width * 0.85,
-        height: 50,
-        alignment: Alignment.center,
-        child: Form(
-          child: TextFormField(
-            autofocus: true,
-            obscureText: true,
-            onChanged: (value) {
-              _viewModel.password = value;
-            },
-            cursorColor: Colors.white,
-            showCursor: false,
-            style: TextStyle(
-                color: _theme.brightness == Brightness.dark
-                    ? Colors.black87
-                    : Colors.white60),
-            decoration: InputDecoration(
-                hintText: "new_password".i18n(),
-                hintStyle: TextStyle(
-                  color: Colors.grey[700],
-                  fontSize: 20,
-                ),
-                errorText: store.error.password,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: (Colors.yellow[700])!,
-                    width: 2.0,
+  Widget get _passwordInput => Padding(
+        padding: const EdgeInsets.only(bottom: 15),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          width: MediaQuery.of(context).size.width * 0.85,
+          height: 50,
+          alignment: Alignment.center,
+          child: Form(
+            child: TextFormField(
+              obscureText: true,
+              onChanged: (value) {
+                _viewModel.password = value;
+              },
+              cursorColor: Colors.white,
+              showCursor: false,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                  hintText: "new_password".i18n(),
+                  hintStyle: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 20,
                   ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: (Colors.yellow[700])!,
-                    width: 3.0,
+                  errorText: store.error.password,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: (Colors.yellow[700])!,
+                      width: 2.0,
+                    ),
                   ),
-                ),
-                filled: true,
-                hoverColor: Colors.yellow.shade200,
-                contentPadding: EdgeInsets.all(15),
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: SvgPicture.asset(
-                    'lib/assets/images/locker.svg',
-                    color: _theme.colorScheme.secondary,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: (Colors.yellow[700])!,
+                      width: 3.0,
+                    ),
                   ),
-                )),
+                  filled: true,
+                  hoverColor: Colors.yellow.shade200,
+                  contentPadding: EdgeInsets.all(15),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: SvgPicture.asset(
+                      'lib/assets/images/locker.svg',
+                      color: _theme.colorScheme.secondary,
+                    ),
+                  )),
+            ),
           ),
         ),
       );
 
-  Widget get _confirmPasswordInput => Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        width: MediaQuery.of(context).size.width * 0.85,
-        height: 50,
-        alignment: Alignment.center,
-        child: Form(
-          child: TextField(
-            obscureText: true,
-            onChanged: (value) {
-              _viewModel.passwordConfirm = value;
-            },
-            cursorColor: Colors.black,
-            showCursor: false,
-            style: TextStyle(
-                color: _theme.brightness == Brightness.dark
-                    ? Colors.black87
-                    : Colors.white60),
-            decoration: InputDecoration(
-                hintText: "new_password_confirm".i18n(),
-                hintStyle: TextStyle(
-                  color: Colors.grey[700],
-                  fontSize: 20,
-                ),
-                errorText: store.error.passwordConfirm,
-                errorStyle:
-                    TextStyle(backgroundColor: Colors.white, color: Colors.red),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: (Colors.yellow[700])!,
-                    width: 2.0,
+  Widget get _confirmPasswordInput => Padding(
+        padding: const EdgeInsets.only(bottom: 15),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          width: MediaQuery.of(context).size.width * 0.85,
+          height: 50,
+          alignment: Alignment.center,
+          child: Form(
+            child: TextField(
+              obscureText: true,
+              onChanged: (value) {
+                _viewModel.passwordConfirm = value;
+              },
+              cursorColor: Colors.black,
+              showCursor: false,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                  hintText: "new_password_confirm".i18n(),
+                  hintStyle: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 20,
                   ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: (Colors.yellow[700])!,
-                    width: 3.0,
+                  errorText: store.error.passwordConfirm,
+                  errorStyle: TextStyle(
+                      backgroundColor: Colors.white, color: Colors.red),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: (Colors.yellow[700])!,
+                      width: 2.0,
+                    ),
                   ),
-                ),
-                filled: true,
-                hoverColor: Colors.yellow.shade200,
-                contentPadding: EdgeInsets.all(15),
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: SvgPicture.asset(
-                    'lib/assets/images/locker.svg',
-                    color: _theme.colorScheme.secondary,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: (Colors.yellow[700])!,
+                      width: 3.0,
+                    ),
                   ),
-                )),
+                  filled: true,
+                  hoverColor: Colors.yellow.shade200,
+                  contentPadding: EdgeInsets.all(15),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: SvgPicture.asset(
+                      'lib/assets/images/locker.svg',
+                      color: _theme.colorScheme.secondary,
+                    ),
+                  )),
+            ),
           ),
         ),
       );
@@ -200,20 +195,13 @@ class _NewPasswordPageState
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 33,
-                          ),
-                        ],
+                        children: [],
                       ),
                       _passwordInput,
-                      SizedBox(
-                        height: 30,
-                      ),
                       _confirmPasswordInput,
                     ],
                   ),

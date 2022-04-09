@@ -1,9 +1,14 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:obd_app/src/features/auth/data/repository/new_password_repository.dart';
+import 'package:obd_app/src/features/auth/data/repository/registration_Repository.dart';
 import 'package:obd_app/src/features/auth/domain/repository/new_password_interface.dart';
+import 'package:obd_app/src/features/auth/domain/repository/registration_interface.dart';
 import 'package:obd_app/src/features/auth/domain/usecase/new_password_usecase.dart';
+import 'package:obd_app/src/features/auth/domain/usecase/registration_usecase.dart';
 import 'package:obd_app/src/features/auth/presentation/view/page/new_password_page.dart';
+import 'package:obd_app/src/features/auth/presentation/view/page/registration_page.dart';
 import 'package:obd_app/src/features/auth/presentation/viewmodel/new_password/new_password_viewmodel.dart';
+import 'package:obd_app/src/features/auth/presentation/viewmodel/registration_viewmodel.dart';
 
 import 'data/repository/login_repository.dart';
 import 'domain/repository/login_interface.dart';
@@ -20,12 +25,18 @@ class AuthModule extends Module {
         Bind.factory((i) => NewPasswordViewModel()),
         Bind.factory((i) => NewPasswordUseCase()),
         Bind.factory<INewPassword>((i) => NewPasswordRepository()),
+        Bind.factory((i) => RegistrationViewModel()),
+        Bind.factory((i) => RegistrationUseCase()),
+        Bind.factory<IRegistration>((i) => RegistrationRepository()),
       ];
 
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (_, __) => LoginPage(), children: []),
+        ChildRoute('/register',
+            child: (_, __) => RegistrationPage(), children: []),
         ChildRoute('/new-password',
-            child: (_, __) => NewPasswordPage(), children: [])
+            child: (_, __) => NewPasswordPage(), children: []),
+        // ModuleRoute('/home', module: HomeModule())
       ];
 }

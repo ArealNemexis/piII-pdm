@@ -1,24 +1,25 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:obd_app/src/features/auth/data/dto/http_response/http_response.dart';
-import 'package:obd_app/src/features/auth/domain/usecase/new_password_usecase.dart';
+import 'package:obd_app/src/features/auth/domain/usecase/registration_usecase.dart';
 
-part 'new_password_viewmodel.g.dart';
+part 'registration_viewmodel.g.dart';
 
-class NewPasswordViewModel = _NewPasswordViewModelBase
-    with _$NewPasswordViewModel;
+class RegistrationViewModel = _RegistrationViewmodelBase
+    with _$RegistrationViewModel;
 
-abstract class _NewPasswordViewModelBase with Store {
-  final _usecase = Modular.get<NewPasswordUseCase>();
-  final error = NewPasswordError();
+abstract class _RegistrationViewmodelBase with Store {
+  final _usecase = Modular.get<RegistrationUseCase>();
+  final error = RegistrationError();
 
-  String confirmationToken = '14a5b7a9-755d-4859-93bb-ed2d8a6195d0';
+  @observable
+  String email = '';
 
   @observable
   String password = '';
 
   @observable
-  bool sucess = false;
+  String name = '';
 
   @observable
   String passwordConfirm = '';
@@ -45,26 +46,27 @@ abstract class _NewPasswordViewModelBase with Store {
     }
   }
 
-  Future<HttpResponse?> newPassword() async {
+  Future<int?> register() async {
+    print("TO AQUI AMIGAO");
     validateForm();
     if (!error.hasErrors) {
-      HttpResponse response =
-          await _usecase.newPassword(password, confirmationToken);
+      int? response =
+          await _usecase.register(email, password, name, passwordConfirm);
 
-      if (response.status == 200) {
-        Modular.to.navigate("/");
+      if (response == 200) {
+        Modular.to.navigate("/login");
       }
-
       return response;
+    } else {
+      print('Erro no formulario');
     }
-
     return null;
   }
 }
 
-class NewPasswordError = _NewPasswordErrorBase with _$NewPasswordError;
+class RegistrationError = _RegistrationErrorBase with _$RegistrationError;
 
-abstract class _NewPasswordErrorBase with Store {
+abstract class _RegistrationErrorBase with Store {
   @observable
   String? password;
 

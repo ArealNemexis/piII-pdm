@@ -18,10 +18,10 @@ class NewPasswordRepository implements INewPassword {
       final response =
           await dio.post('http://10.0.2.2:8080/auth/recover-password', data: {
         "password": newPassword.password,
-        "confirmationToken": "0dfdabac-dddf-4034-b364-a43cf54e4581",
+        "confirmationToken": "aa2b1099-d5ba-4446-8910-b39b8cc73e14",
       });
       print(response.data.toString());
-      return HttpResponse.fromJson(jsonDecode(response.data.toString()));
+      return HttpResponse.fromJson(response.data);
     } on DioError catch (e) {
       print(e.response.toString());
 
