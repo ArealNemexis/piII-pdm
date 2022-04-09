@@ -39,6 +39,21 @@ mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
     });
   }
 
+  final _$nameAtom = Atom(name: '_RegistrationViewmodelBase.name');
+
+  @override
+  String get name {
+    _$nameAtom.reportRead();
+    return super.name;
+  }
+
+  @override
+  set name(String value) {
+    _$nameAtom.reportWrite(value, super.name, () {
+      super.name = value;
+    });
+  }
+
   final _$passwordConfirmAtom =
       Atom(name: '_RegistrationViewmodelBase.passwordConfirm');
 
@@ -55,19 +70,40 @@ mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
     });
   }
 
-  final _$nameAtom = Atom(name: '_RegistrationViewmodelBase.name');
+  final _$_RegistrationViewmodelBaseActionController =
+      ActionController(name: '_RegistrationViewmodelBase');
 
   @override
-  String get name {
-    _$nameAtom.reportRead();
-    return super.name;
+  void validateEqualPassword() {
+    final _$actionInfo = _$_RegistrationViewmodelBaseActionController
+        .startAction(name: '_RegistrationViewmodelBase.validateEqualPassword');
+    try {
+      return super.validateEqualPassword();
+    } finally {
+      _$_RegistrationViewmodelBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
-  set name(String value) {
-    _$nameAtom.reportWrite(value, super.name, () {
-      super.name = value;
-    });
+  String? validateEmptyPassword(String passwordToValidate) {
+    final _$actionInfo = _$_RegistrationViewmodelBaseActionController
+        .startAction(name: '_RegistrationViewmodelBase.validateEmptyPassword');
+    try {
+      return super.validateEmptyPassword(passwordToValidate);
+    } finally {
+      _$_RegistrationViewmodelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void validateForm() {
+    final _$actionInfo = _$_RegistrationViewmodelBaseActionController
+        .startAction(name: '_RegistrationViewmodelBase.validateForm');
+    try {
+      return super.validateForm();
+    } finally {
+      _$_RegistrationViewmodelBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
@@ -75,14 +111,22 @@ mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
     return '''
 email: ${email},
 password: ${password},
-passwordConfirm: ${passwordConfirm},
-name: ${name}
+name: ${name},
+passwordConfirm: ${passwordConfirm}
     ''';
   }
 }
 
 mixin _$RegistrationError on _RegistrationErrorBase, Store {
-  final _$passwordAtom = Atom(name: '_NewPasswordErrorBase.password');
+  Computed<bool>? _$hasErrorsComputed;
+
+  @override
+  bool get hasErrors =>
+      (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors,
+              name: '_RegistrationErrorBase.hasErrors'))
+          .value;
+
+  final _$passwordAtom = Atom(name: '_RegistrationErrorBase.password');
 
   @override
   String? get password {
@@ -98,7 +142,7 @@ mixin _$RegistrationError on _RegistrationErrorBase, Store {
   }
 
   final _$passwordConfirmAtom =
-      Atom(name: '_NewPasswordErrorBase.passwordConfirm');
+      Atom(name: '_RegistrationErrorBase.passwordConfirm');
 
   @override
   String? get passwordConfirm {
@@ -118,6 +162,7 @@ mixin _$RegistrationError on _RegistrationErrorBase, Store {
     return '''
 password: ${password},
 passwordConfirm: ${passwordConfirm},
+hasErrors: ${hasErrors}
     ''';
   }
 }

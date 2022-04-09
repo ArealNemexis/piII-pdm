@@ -24,6 +24,21 @@ mixin _$NewPasswordViewModel on _NewPasswordViewModelBase, Store {
     });
   }
 
+  final _$sucessAtom = Atom(name: '_NewPasswordViewModelBase.sucess');
+
+  @override
+  bool get sucess {
+    _$sucessAtom.reportRead();
+    return super.sucess;
+  }
+
+  @override
+  set sucess(bool value) {
+    _$sucessAtom.reportWrite(value, super.sucess, () {
+      super.sucess = value;
+    });
+  }
+
   final _$passwordConfirmAtom =
       Atom(name: '_NewPasswordViewModelBase.passwordConfirm');
 
@@ -40,10 +55,47 @@ mixin _$NewPasswordViewModel on _NewPasswordViewModelBase, Store {
     });
   }
 
+  final _$_NewPasswordViewModelBaseActionController =
+      ActionController(name: '_NewPasswordViewModelBase');
+
+  @override
+  void validateEqualPassword() {
+    final _$actionInfo = _$_NewPasswordViewModelBaseActionController
+        .startAction(name: '_NewPasswordViewModelBase.validateEqualPassword');
+    try {
+      return super.validateEqualPassword();
+    } finally {
+      _$_NewPasswordViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateEmptyPassword(String passwordToValidate) {
+    final _$actionInfo = _$_NewPasswordViewModelBaseActionController
+        .startAction(name: '_NewPasswordViewModelBase.validateEmptyPassword');
+    try {
+      return super.validateEmptyPassword(passwordToValidate);
+    } finally {
+      _$_NewPasswordViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void validateForm() {
+    final _$actionInfo = _$_NewPasswordViewModelBaseActionController
+        .startAction(name: '_NewPasswordViewModelBase.validateForm');
+    try {
+      return super.validateForm();
+    } finally {
+      _$_NewPasswordViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 password: ${password},
+sucess: ${sucess},
 passwordConfirm: ${passwordConfirm}
     ''';
   }
