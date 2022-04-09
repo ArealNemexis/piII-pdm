@@ -80,3 +80,44 @@ name: ${name}
     ''';
   }
 }
+
+mixin _$RegistrationError on _RegistrationErrorBase, Store {
+  final _$passwordAtom = Atom(name: '_NewPasswordErrorBase.password');
+
+  @override
+  String? get password {
+    _$passwordAtom.reportRead();
+    return super.password;
+  }
+
+  @override
+  set password(String? value) {
+    _$passwordAtom.reportWrite(value, super.password, () {
+      super.password = value;
+    });
+  }
+
+  final _$passwordConfirmAtom =
+      Atom(name: '_NewPasswordErrorBase.passwordConfirm');
+
+  @override
+  String? get passwordConfirm {
+    _$passwordConfirmAtom.reportRead();
+    return super.passwordConfirm;
+  }
+
+  @override
+  set passwordConfirm(String? value) {
+    _$passwordConfirmAtom.reportWrite(value, super.passwordConfirm, () {
+      super.passwordConfirm = value;
+    });
+  }
+
+  @override
+  String toString() {
+    return '''
+password: ${password},
+passwordConfirm: ${passwordConfirm},
+    ''';
+  }
+}

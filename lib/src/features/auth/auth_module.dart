@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:obd_app/src/features/auth/data/repository/new_password_repository.dart';
-import 'package:obd_app/src/features/auth/data/repository/register_repository.dart';
+import 'package:obd_app/src/features/auth/data/repository/registration_Repository.dart';
 import 'package:obd_app/src/features/auth/domain/repository/new_password_interface.dart';
 import 'package:obd_app/src/features/auth/domain/repository/registration_interface.dart';
 import 'package:obd_app/src/features/auth/domain/usecase/new_password_usecase.dart';
@@ -32,8 +32,9 @@ class AuthModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (_, __) => RegistrationPage(), children: []),
-        ChildRoute('/login', child: (_, __) => LoginPage(), children: []),
+        ChildRoute('/', child: (_, __) => LoginPage(), children: []),
+        ChildRoute('/register',
+            child: (_, __) => RegistrationPage(), children: []),
         ChildRoute('/new-password',
             child: (_, __) => NewPasswordPage(), children: [])
       ];
