@@ -1,3 +1,10 @@
 {
-    "app_name": "Aplicativo Obd"
+    "app_name": "Aplicativo Obd",
+    "email": "Email",
+    "password": "Senha",
+    "enter": "Entrar",
+    "register": "Cadastre-se",
+    "new_password": "Nova senha",
+    "new_password_confirm": "Repita a senha",
+    "save": "Salvar"
 }
