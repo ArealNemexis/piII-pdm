@@ -1,30 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:localization/localization.dart';
+import 'package:obd_app/src/features/auth/data/dto/http_response/http_response.dart';
 import 'package:obd_app/src/common/buttons.dart';
+import 'package:obd_app/src/features/auth/presentation/viewmodel/new_password/new_password_viewmodel.dart';
+import 'package:localization/localization.dart';
 
-import '../../viewmodel/login_viewmodel.dart';
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class NewPasswordPage extends StatefulWidget {
+  NewPasswordPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<NewPasswordPage> createState() => _NewPasswordPageState();
 }
 
-class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
-  final _viewModel = Modular.get<LoginViewModel>();
+class _NewPasswordPageState
+    extends ModularState<NewPasswordPage, NewPasswordViewModel> {
+  final _viewModel = Modular.get<NewPasswordViewModel>();
   late ColorScheme _colors;
   late ThemeData _theme;
 
-  void _login() {
-    _viewModel.login();
+  void _changePassword() async {
+    HttpResponse? response = await _viewModel.newPassword();
   }
 
-  void _register() {
-    Modular.to.navigate("/register");
+  void _goToLogin() {
+    Modular.to.navigate("/");
   }
+
+  @override
+  Widget build(BuildContext context) {
+    _theme = Theme.of(context);
+    _colors = _theme.colorScheme;
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: _theme.colorScheme.background,
+        body: Stack(
+          children: [
+            _mainLogo,
+            _newPasswordFormInput,
+            _buttonSave,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget get _secondaryButton => widget.secondaryButton(
+      theme: _theme,
+      onPressedF: _goToLogin,
+      textButton: Text(
+        "Secondary",
+        style: TextStyle(
+            color: _theme.brightness == Brightness.dark
+                ? Color.fromRGBO(251, 192, 45, 1)
+                : Colors.black87),
+      ));
 
   Widget get _mainLogo => Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -35,89 +65,14 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
               SvgPicture.asset('lib/assets/images/car_obd.svg'),
             ],
           ),
+          SizedBox(
+            height: 260,
+          ),
         ],
       );
 
-  Widget get _buildForgotPassword => Padding(
-        padding: const EdgeInsets.only(bottom: 15, top: 0),
-        child: Row(
-          children: [
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: const TextStyle(
-                    color: Color.fromRGBO(255, 191, 0, 1), fontSize: 18),
-              ),
-              onPressed: () {
-                Modular.to.navigate("/get-forgot-password");
-              },
-              child: Text(
-                'forget_pass'.i18n(),
-                textAlign: TextAlign.left,
-                style: const TextStyle(color: Color.fromRGBO(255, 191, 0, 1)),
-              ),
-            ),
-          ],
-        ),
-      );
-
-  Widget get _emailInput => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          width: MediaQuery.of(context).size.width * 0.85,
-          height: 50,
-          alignment: Alignment.center,
-          child: Form(
-            child: TextFormField(
-              onChanged: (value) {
-                _viewModel.email = value;
-              },
-              cursorColor: _theme.brightness == Brightness.dark
-                  ? Colors.black87
-                  : Colors.white60,
-              showCursor: false,
-              style: TextStyle(
-                  color: _theme.brightness == Brightness.dark
-                      ? Colors.black87
-                      : Colors.white60),
-              decoration: InputDecoration(
-                  hintText: "email".i18n(),
-                  hintStyle: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 20,
-                  ),
-                  errorText: store.error.email,
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: (Colors.yellow[700])!,
-                      width: 2.0,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: (Colors.yellow[700])!,
-                      width: 3.0,
-                    ),
-                  ),
-                  filled: true,
-                  hoverColor: Colors.yellow.shade200,
-                  contentPadding: EdgeInsets.all(15),
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: SvgPicture.asset(
-                      'lib/assets/images/locker.svg',
-                      color: _theme.colorScheme.secondary,
-                    ),
-                  )),
-            ),
-          ),
-        ),
-      );
-
   Widget get _passwordInput => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.only(bottom: 15),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
           width: MediaQuery.of(context).size.width * 0.85,
@@ -129,16 +84,11 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
               onChanged: (value) {
                 _viewModel.password = value;
               },
-              cursorColor: _theme.brightness == Brightness.dark
-                  ? Colors.black87
-                  : Colors.white60,
+              cursorColor: Colors.white,
               showCursor: false,
-              style: TextStyle(
-                  color: _theme.brightness == Brightness.dark
-                      ? Colors.black87
-                      : Colors.white60),
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                  hintText: "password".i18n(),
+                  hintText: "new_password".i18n(),
                   hintStyle: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 20,
@@ -173,14 +123,64 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
         ),
       );
 
-  Widget get _inputBoxLogin => Column(
+  Widget get _confirmPasswordInput => Padding(
+        padding: const EdgeInsets.only(bottom: 15),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          width: MediaQuery.of(context).size.width * 0.85,
+          height: 50,
+          alignment: Alignment.center,
+          child: Form(
+            child: TextField(
+              obscureText: true,
+              onChanged: (value) {
+                _viewModel.passwordConfirm = value;
+              },
+              cursorColor: Colors.black,
+              showCursor: false,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                  hintText: "new_password_confirm".i18n(),
+                  hintStyle: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 20,
+                  ),
+                  errorText: store.error.passwordConfirm,
+                  errorStyle: TextStyle(
+                      backgroundColor: Colors.white, color: Colors.red),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: (Colors.yellow[700])!,
+                      width: 2.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: (Colors.yellow[700])!,
+                      width: 3.0,
+                    ),
+                  ),
+                  filled: true,
+                  hoverColor: Colors.yellow.shade200,
+                  contentPadding: EdgeInsets.all(15),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: SvgPicture.asset(
+                      'lib/assets/images/locker.svg',
+                      color: _theme.colorScheme.secondary,
+                    ),
+                  )),
+            ),
+          ),
+        ),
+      );
+
+  Widget get _newPasswordFormInput => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-            child: _mainLogo,
-          ),
-          Column(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ClipRRect(
@@ -197,9 +197,12 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _emailInput,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [],
+                      ),
                       _passwordInput,
-                      _buildForgotPassword
+                      _confirmPasswordInput,
                     ],
                   ),
                 ),
@@ -209,71 +212,32 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
         ],
       );
 
-  Widget get _buildDivider => Row(
+  Widget get _buttonSave => Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
         children: [
-          Text('divider_text'.i18n(),
-              style: const TextStyle(
-                  color: Color.fromRGBO(209, 169, 24, 1), fontSize: 23)
-              // style: _theme.textTheme.headline6,
-              ),
-        ],
-      );
-
-  @override
-  Widget build(BuildContext context) {
-    _theme = Theme.of(context);
-    _colors = _theme.colorScheme;
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          color: _theme.colorScheme.background,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Stack(children: [
-                  _inputBoxLogin,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 125, top: 230),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                          minimumSize:
-                              MaterialStateProperty.all<Size>(Size(145, 30))),
-                      child: Text(
-                        "enter".i18n(),
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        _login();
-                      },
+          SizedBox(
+            height: 270,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 20),
+                child: ElevatedButton(
+                  onPressed: () {
+                    _changePassword();
+                  },
+                  child: Text(
+                    'save'.i18n(),
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
                   ),
-                ]),
-                _buildDivider,
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: widget.secondaryButton(
-                      theme: _theme,
-                      onPressedF: () {
-                        _register();
-                      },
-                      textButton: Text(
-                        "register".i18n(),
-                        style: TextStyle(
-                            color: _theme.brightness == Brightness.dark
-                                ? Color.fromRGBO(251, 192, 45, 1)
-                                : Colors.black87),
-                      )),
-                )
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ),
-    );
-  }
+          _secondaryButton
+        ],
+      );
 }
