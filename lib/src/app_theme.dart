@@ -49,13 +49,13 @@ ThemeData get lightTheme => ThemeData.light().copyWith(
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          primary: ButtonColors.defaultYellowButton,
-          onPrimary: Colors.black87,
-          padding: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
-          shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(20),
-          ),
-        )));
+      primary: ButtonColors.defaultYellowButton,
+      onPrimary: Colors.black87,
+      padding: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
+      shape: new RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(20),
+      ),
+    )));
 
 ThemeData get darkTheme => ThemeData.light().copyWith(
     textTheme: TextTheme(
@@ -77,13 +77,13 @@ ThemeData get darkTheme => ThemeData.light().copyWith(
     ),
     errorColor: Colors.red,
     inputDecorationTheme:
-    InputDecorationTheme(hintStyle: TextStyle(color: Colors.white)),
+        InputDecorationTheme(hintStyle: TextStyle(color: Colors.white)),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          primary: ButtonColors.defaultYellowButton,
-          onPrimary: Colors.black,
-          padding: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
-          shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(20),
-          ),
-        )));
+      primary: ButtonColors.defaultYellowButton,
+      onPrimary: Colors.black,
+      padding: EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 10),
+      shape: new RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(20),
+      ),
+    )));

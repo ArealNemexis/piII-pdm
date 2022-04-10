@@ -5,8 +5,8 @@ typedef VoidNonArgument = void Function();
 extension Buttons on Widget {
   Widget secondaryButton(
       {required VoidNonArgument onPressedF,
-        required Text textButton,
-        required ThemeData theme}) {
+      required Text textButton,
+      required ThemeData theme}) {
     return OutlinedButton(
         style: OutlinedButton.styleFrom(
           primary: Colors.transparent,
