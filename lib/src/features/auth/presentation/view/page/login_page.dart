@@ -47,7 +47,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                 textStyle: const TextStyle(
                     color: Color.fromRGBO(255, 191, 0, 1), fontSize: 18),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Modular.to.navigate("/get-forgot-password");
+              },
               child: Text(
                 'forget_pass'.i18n(),
                 textAlign: TextAlign.left,

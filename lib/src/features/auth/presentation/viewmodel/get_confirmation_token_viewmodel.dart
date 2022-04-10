@@ -1,9 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:obd_app/src/features/auth/domain/usecase/token_usecase.dart';
-import '../../domain/model/confirmation_token.dart';
 
-import '../../domain/repository/token_confirmation_interface.dart';
+import '../../domain/model/confirmation_token.dart';
 
 part 'get_confirmation_token_viewmodel.g.dart';
 
@@ -25,6 +24,7 @@ abstract class _ConfirmationTokenViewModelBase with Store {
     error.clear();
 
     validate();
+    print(email);
 
     if (!error.hasErrors) {
       int? responseStatus =
@@ -32,6 +32,8 @@ abstract class _ConfirmationTokenViewModelBase with Store {
       if (responseStatus == 200) {
         Modular.to.navigate("/new-password");
       }
+    } else {
+      print("error");
     }
   }
 }

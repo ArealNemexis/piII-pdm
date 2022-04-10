@@ -54,7 +54,7 @@ abstract class _RegistrationViewmodelBase with Store {
           await _usecase.register(email, password, name, passwordConfirm);
 
       if (response == 200) {
-        Modular.to.navigate("/login");
+        Modular.to.navigate("/");
       }
       return response;
     } else {

@@ -4,7 +4,7 @@ import 'package:obd_app/src/features/auth/data/dto/recover_token_dto.dart';
 import '../model/confirmation_token.dart';
 import '../repository/token_confirmation_interface.dart';
 
-class GetConfirmationTokenUseCase implements IConfirmationToken {
+class GetConfirmationTokenUseCase {
   final repository = Modular.get<IConfirmationToken>();
 
   Future<int?> getConfirmationToken(ConfirmationToken email) async {
@@ -12,7 +12,7 @@ class GetConfirmationTokenUseCase implements IConfirmationToken {
   }
 
   String? verifyEmailEmpty(String email) {
-    if (email.isEmpty) {
+    if (email == "") {
       return "unfilled email";
     }
     return null;

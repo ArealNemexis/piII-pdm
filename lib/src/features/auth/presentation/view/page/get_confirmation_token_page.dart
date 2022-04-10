@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:obd_app/src/common/buttons.dart';
+import 'package:localization/localization.dart';
 
 import '../../viewmodel/get_confirmation_token_viewmodel.dart';
 
@@ -35,15 +37,50 @@ class _GetConfirmationTokenPageState
 
   @override
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
+    _colors = _theme.colorScheme;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Color.fromRGBO(42, 42, 42, 1),
         body: Stack(
-          children: [_mainLogo, _buildContainer, _buildEnviarButton],
+          children: [
+            _mainLogo,
+            _buildContainer,
+            _buildEnviarButton,
+            _loginButton
+          ],
         ),
       ),
     );
   }
+
+  Widget get _loginButton => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 350,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                // height: MediaQuery.of(context).size.height * 0.5,
+                // width: MediaQuery.of(context).size.width * 0.5,
+                margin: EdgeInsets.only(bottom: 20),
+                child: widget.secondaryButton(
+                    theme: _theme,
+                    onPressedF: () {
+                      Modular.to.navigate("/");
+                    },
+                    textButton: Text(
+                      "login".i18n(),
+                      style: TextStyle(color: Colors.white),
+                    )),
+              ),
+            ],
+          ),
+        ],
+      );
 
   Widget get _buildContainer => Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -111,6 +148,9 @@ class _GetConfirmationTokenPageState
           child: TextField(
             cursorColor: Colors.black,
             showCursor: false,
+            onChanged: (value) {
+              _viewModel.email = value;
+            },
             textAlign: TextAlign.center,
             decoration: InputDecoration(
                 hintText: "Email",

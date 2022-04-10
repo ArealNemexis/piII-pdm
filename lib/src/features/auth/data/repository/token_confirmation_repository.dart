@@ -13,24 +13,30 @@ class ConfirmationTokenRepository implements IConfirmationToken {
   }
 
   Future<int?> callBackEnd(ConfirmationToken email) async {
+    print("cheguei na repos");
     Dio dio = new Dio();
     final prefs = await SharedPreferences.getInstance();
 
-    dio.options.headers['content-Type'] = 'aplication/json';
-
-    String path = "http://10.0.2.2:8080/auth/forgot-password";
+    dio.options.headers['content-Type'] = 'application/json';
     try {
-      final response = await Dio().post(path, data: {
-        "email": email.email,
-      });
+      print("cheguei na try");
+
+      final response = await dio.post(
+          'http://10.0.2.2:8080/auth1/forgot-password',
+          data: {"email": email.email});
+      print("passei http");
       RecoverTokenDto responseDataFromApi =
           RecoverTokenDto.fromJson(response.data);
 
       prefs.setString("token", responseDataFromApi.token);
-
+      print(responseDataFromApi.token);
       return response.statusCode;
     } on DioError catch (e) {
+      print(e.error.toString());
       return e.response?.statusCode;
+    } catch (e) {
+      print(e.toString());
     }
+    return null;
   }
 }
