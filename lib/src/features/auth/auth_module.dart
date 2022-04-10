@@ -8,7 +8,7 @@ import 'domain/repository/token_confirmation_interface.dart';
 import 'domain/usecase/login_usecase.dart';
 import 'domain/usecase/token_usecase.dart';
 import 'presentation/view/page/login_page.dart';
-import 'presentation/viewmodel/get_confirm_token_viewmodel.dart';
+import 'presentation/viewmodel/get_confirmation_token_viewmodel.dart';
 import 'presentation/viewmodel/login_viewmodel.dart';
 
 class AuthModule extends Module {
@@ -25,6 +25,7 @@ class AuthModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (_, __) => const LoginPage(), children: []),
-        ChildRoute('/getForgotPassword', child: (_, __) =>  ConfirmationTokenPage(), children: []),
+        ChildRoute('/getForgotPassword',
+            child: (_, __) => GetConfirmationTokenPage(), children: []),
       ];
 }

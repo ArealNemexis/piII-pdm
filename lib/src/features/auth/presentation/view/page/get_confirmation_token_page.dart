@@ -2,166 +2,182 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../viewmodel/get_confirm_token_viewmodel.dart';
-
-void main() => runApp(GetConfirmationToken());
+import '../../viewmodel/get_confirmation_token_viewmodel.dart';
 
 class ConfirmationTokenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'login App',
       debugShowCheckedModeBanner: false,
-      home: GetConfirmationToken(),
+      home: GetConfirmationTokenPage(),
     );
   }
 }
 
-class GetConfirmationToken extends StatefulWidget {
-  const GetConfirmationToken({Key? key}) : super(key: key);
+class GetConfirmationTokenPage extends StatefulWidget {
+  const GetConfirmationTokenPage({Key? key}) : super(key: key);
 
   @override
-  State<GetConfirmationToken> createState() => _loginPageState();
+  State<GetConfirmationTokenPage> createState() =>
+      _GetConfirmationTokenPageState();
 }
 
-class _loginPageState extends ModularState<GetConfirmationToken,
-    ConfirmationTokenViewModel> {
+class _GetConfirmationTokenPageState
+    extends ModularState<GetConfirmationTokenPage, ConfirmationTokenViewModel> {
   final _viewModel = Modular.get<ConfirmationTokenViewModel>();
   late ColorScheme _colors;
   late ThemeData _theme;
 
+  void _getToken() {
+    _viewModel.getConfirmationToken();
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey[800],
         body: Stack(
-          children: [
-            _mainLogo,
-            _buildContainer,
-            _buildEnviarButton
-          ],
+          children: [_mainLogo, _buildContainer, _buildEnviarButton],
         ),
       ),
     );
   }
 
-Widget get _buildContainer=> Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Row(
+  Widget get _buildContainer => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.all(
-              Radius.circular(30),
-            ),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.26,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30),
+                ),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.26,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 70,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 70,
+                          ),
+                          Text(
+                            "insira seu e-mail cadastrado",
+                            style: TextStyle(
+                              color: Colors.yellow[700],
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "insira seu e-mail cadastrado",
-                        style: TextStyle(color: Colors.yellow[700],fontSize: 20,),
-                      ),
+                      _buildEmail,
                     ],
                   ),
-                  _buildEmail,
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ],
-      ),
-    ],
-  );
+      );
 
-Widget get _mainLogo => Column(
-  mainAxisAlignment: MainAxisAlignment.center,
-  children: [
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SvgPicture.asset('lib/assets/images/car_obd.svg'),
-      ],
-    ),
-  ],
-);
-
-Widget get _buildEmail => Container(
-    padding: EdgeInsets.symmetric(horizontal: 15),
-    width: MediaQuery.of(context).size.width * 0.85,
-    height: 50,
-    alignment: Alignment.center,
-    child: Form(
-      child: TextField (
-        cursorColor: Colors.black,
-        showCursor: false,
-        textAlign: TextAlign.center,
-        decoration: InputDecoration(
-            hintText: "Email",
-            hintStyle: TextStyle(color: Colors.grey[500],fontSize: 20,),
-            // fillColor: Colors.grey.shade200,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: (Colors.yellow[700])!,
-                width: 2.0,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: (Colors.yellow[700])!,
-                width: 1.0,
-              ),
-            ),
-            filled: true,
-            hoverColor: Colors.yellow.shade200,
-            contentPadding: EdgeInsets.only(top: 17, left: 15),
-            prefixIcon: Icon(Icons.email_outlined,color: Colors.black87,size: 35,)
-        ),
-      ),
-    ),
-  );
-
-Widget get _buildEnviarButton => Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      SizedBox(height: 200,),
-      Row(
+  Widget get _mainLogo => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            // height: MediaQuery.of(context).size.height * 0.5,
-            // width: MediaQuery.of(context).size.width * 0.5,
-            margin: EdgeInsets.only(bottom: 20),
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text('Enviar',style: TextStyle(color: Colors.black87,fontSize: 25,),),
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.yellow[700],
-                  fixedSize: const Size(180,55),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))
-              ),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset('lib/assets/images/car_obd.svg'),
+            ],
           ),
         ],
-      ),
-    ],
-  );
+      );
 
+  Widget get _buildEmail => Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        width: MediaQuery.of(context).size.width * 0.85,
+        height: 50,
+        alignment: Alignment.center,
+        child: Form(
+          child: TextField(
+            cursorColor: Colors.black,
+            showCursor: false,
+            textAlign: TextAlign.center,
+            decoration: InputDecoration(
+                hintText: "Email",
+                hintStyle: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 20,
+                ),
+                // fillColor: Colors.grey.shade200,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: (Colors.yellow[700])!,
+                    width: 2.0,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: (Colors.yellow[700])!,
+                    width: 1.0,
+                  ),
+                ),
+                filled: true,
+                hoverColor: Colors.yellow.shade200,
+                contentPadding: EdgeInsets.only(top: 17, left: 15),
+                prefixIcon: Icon(
+                  Icons.email_outlined,
+                  color: Colors.black87,
+                  size: 35,
+                )),
+          ),
+        ),
+      );
+
+  Widget get _buildEnviarButton => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 200,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                // height: MediaQuery.of(context).size.height * 0.5,
+                // width: MediaQuery.of(context).size.width * 0.5,
+                margin: EdgeInsets.only(bottom: 20),
+                child: ElevatedButton(
+                  onPressed: () {
+                    _getToken();
+                  },
+                  child: Text(
+                    'Enviar',
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 25,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.yellow[700],
+                      fixedSize: const Size(180, 55),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50))),
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
 }

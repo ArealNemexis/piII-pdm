@@ -1,24 +1,36 @@
 import 'dart:convert' show Encoding, jsonDecode, jsonEncode;
 
 import 'package:obd_app/src/features/auth/data/dto/recover_token_dto.dart';
+import 'package:obd_app/src/features/auth/domain/model/confirmation_token.dart';
 import 'package:obd_app/src/features/auth/domain/repository/token_confirmation_interface.dart';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ConfirmationTokenRepository implements IConfirmationToken {
   @override
-  Future<String?> getConfirmationToken(RecoverTokenDto token) {
-    return callBackEnd(token);
+  Future<int?> getConfirmationToken(ConfirmationToken email) {
+    return callBackEnd(email);
   }
 
-  Future<String?> callBackEnd(RecoverTokenDto tokenEmail) async{
+  Future<int?> callBackEnd(ConfirmationToken email) async {
+    Dio dio = new Dio();
+    final prefs = await SharedPreferences.getInstance();
+
+    dio.options.headers['content-Type'] = 'aplication/json';
 
     String path = "http://10.0.2.2:8080/auth/forgot-password";
-    Dio().options.headers['content-type'] = 'aplication/json';
+    try {
+      final response = await Dio().post(path, data: {
+        "email": email.email,
+      });
+      RecoverTokenDto responseDataFromApi =
+          RecoverTokenDto.fromJson(response.data);
 
-    final response = await Dio().post(path, data: {
-          "email": tokenEmail.email,
-        });
+      prefs.setString("token", responseDataFromApi.token);
 
-    return response.statusMessage;
+      return response.statusCode;
+    } on DioError catch (e) {
+      return e.response?.statusCode;
+    }
   }
 }
