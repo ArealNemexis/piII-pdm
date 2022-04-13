@@ -47,7 +47,6 @@ abstract class _RegistrationViewmodelBase with Store {
   }
 
   Future<int?> register() async {
-    print("TO AQUI AMIGAO");
     validateForm();
     if (!error.hasErrors) {
       int? response =
@@ -58,9 +57,8 @@ abstract class _RegistrationViewmodelBase with Store {
       }
       return response;
     } else {
-      print('Erro no formulario');
+      return null;
     }
-    return null;
   }
 }
 
