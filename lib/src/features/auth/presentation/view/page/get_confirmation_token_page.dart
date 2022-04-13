@@ -158,9 +158,7 @@ class _GetConfirmationTokenPageState
             cursorColor: Colors.black,
             showCursor: false,
             onChanged: (value) {
-              if (validateEmail(value) == 0) {
-                _viewModel.email = value;
-              }
+              validateEmail(value);
             },
             textAlign: TextAlign.center,
             decoration: InputDecoration(
@@ -232,22 +230,19 @@ class _GetConfirmationTokenPageState
         ],
       );
 
-  int validateEmail(String value) {
+  void validateEmail(String value) {
     if (value.isEmpty) {
       setState(() {
         _emailInputErrorMessage = "Email can not be empty".i18n();
       });
-      return 1;
     } else if (!EmailValidator.validate(value, true)) {
       setState(() {
         _emailInputErrorMessage = "Email is invalid".i18n();
       });
-      return 1;
     } else {
       setState(() {
         _emailInputErrorMessage = "";
       });
-      return 0;
     }
   }
 }

@@ -81,9 +81,8 @@ class _RegistrationPageState
         child: Form(
           child: TextFormField(
             onChanged: (value) {
-              if (validateName(value) == 0) {
-                _viewModel.name = value;
-              }
+              validateName(value);
+              _viewModel.name = value;
             },
             cursorColor: Colors.white,
             style: TextStyle(color: Colors.white),
@@ -129,9 +128,8 @@ class _RegistrationPageState
         child: Form(
           child: TextField(
             onChanged: (value) {
-              if (validateEmail(value) == 0) {
-                _viewModel.email = value;
-              }
+              validateEmail(value);
+              _viewModel.email = value;
             },
             textAlign: TextAlign.start,
             style: TextStyle(color: Colors.white),
@@ -178,9 +176,8 @@ class _RegistrationPageState
           child: TextField(
             obscureText: true,
             onChanged: (value) {
-              if (validatePassword(value) == 0) {
-                _viewModel.password = value;
-              }
+              validatePassword(value);
+              _viewModel.password = value;
             },
             textAlign: TextAlign.start,
             style: TextStyle(color: Colors.white),
@@ -227,9 +224,8 @@ class _RegistrationPageState
           child: TextField(
             obscureText: true,
             onChanged: (value) {
-              if (validateConfirmationPassword(value) == 0) {
-                _viewModel.passwordConfirm = value;
-              }
+              validateConfirmationPassword(value);
+              _viewModel.passwordConfirm = value;
             },
             textAlign: TextAlign.start,
             style: TextStyle(color: Colors.white),
@@ -376,77 +372,66 @@ class _RegistrationPageState
         ],
       );
 
-  int validateEmail(String value) {
+  void validateEmail(String value) {
     if (value.isEmpty) {
       setState(() {
         _emailInputErrorMessage = "Email can not be empty".i18n();
       });
-      return 1;
     } else if (!EmailValidator.validate(value, true)) {
       setState(() {
         _emailInputErrorMessage = "Email is invalid".i18n();
       });
-      return 1;
     } else {
       setState(() {
         _emailInputErrorMessage = "";
       });
-      return 0;
     }
   }
 
-  int validatePassword(String value) {
+  void validatePassword(String value) {
     if (value.isEmpty) {
       setState(() {
         _passwordInputErrorMessage = "Password can not be empty".i18n();
       });
-      return 0;
     } else if (value.length < 6) {
       setState(() {
         _passwordInputErrorMessage =
             "Password must be at least 6 characters".i18n();
       });
-      return 0;
     } else {
       setState(() {
         _passwordInputErrorMessage = "";
       });
-      return 1;
     }
   }
 
-  int validateName(String value) {
+  void validateName(String value) {
     if (value.isEmpty) {
       setState(() {
         _nameInputErrorMessage = "Name can not be empty".i18n();
       });
-      return 1;
     } else {
       setState(() {
         _nameInputErrorMessage = "";
       });
-      return 0;
     }
   }
 
-  int validateConfirmationPassword(String value) {
+  void validateConfirmationPassword(String value) {
     if (value.isEmpty) {
       setState(() {
         _passwordConfirmationInputErrorMessage =
             "Password can not be empty".i18n();
       });
-      return 0;
     } else if (value.length < 6) {
       setState(() {
         _passwordConfirmationInputErrorMessage =
             "Password must be at least 6 characters".i18n();
       });
-      return 0;
     } else {
       setState(() {
         _passwordConfirmationInputErrorMessage = "";
       });
-      return 1;
     }
   }
 }

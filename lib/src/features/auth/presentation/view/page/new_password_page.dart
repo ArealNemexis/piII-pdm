@@ -15,6 +15,7 @@ class NewPasswordPage extends StatefulWidget {
 
 class _NewPasswordPageState
     extends ModularState<NewPasswordPage, NewPasswordViewModel> {
+  String _passwordInputErrorMessage = '';
   final _viewModel = Modular.get<NewPasswordViewModel>();
   late ColorScheme _colors;
   late ThemeData _theme;
@@ -82,6 +83,7 @@ class _NewPasswordPageState
             child: TextFormField(
               obscureText: true,
               onChanged: (value) {
+                validatePassword(value);
                 _viewModel.password = value;
               },
               cursorColor: Colors.white,
@@ -134,6 +136,7 @@ class _NewPasswordPageState
             child: TextField(
               obscureText: true,
               onChanged: (value) {
+                validatePassword(value);
                 _viewModel.passwordConfirm = value;
               },
               cursorColor: Colors.black,
@@ -240,4 +243,21 @@ class _NewPasswordPageState
           _secondaryButton
         ],
       );
+
+  void validatePassword(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        _passwordInputErrorMessage = "Password can not be empty".i18n();
+      });
+    } else if (value.length < 6) {
+      setState(() {
+        _passwordInputErrorMessage =
+            "Password must be at least 6 characters".i18n();
+      });
+    } else {
+      setState(() {
+        _passwordInputErrorMessage = "";
+      });
+    }
+  }
 }
