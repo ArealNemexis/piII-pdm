@@ -11,5 +11,7 @@
     "register": "Sign up",
     "new_password": "New password",
     "new_password_confirm": "Repeat the password",
-    "save": "Save"
+    "save": "Save",
+    "next": "Next",
+    "skip": "Skip"
 }

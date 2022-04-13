@@ -41,6 +41,9 @@ flutter:
     - ./lib/assets/images/
     - ./lib/assets/images/car_obd.svg
     - ./lib/assets/images/locker.svg
+    - ./lib/assets/images/interlakes.png
+    - ./lib/assets/images/golzin.png
+    - ./lib/assets/images/icon-side.png
   # example:
   # fonts:
   #   - family: Schyler
