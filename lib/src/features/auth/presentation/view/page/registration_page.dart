@@ -4,8 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:localization/localization.dart';
 import 'package:obd_app/src/features/auth/presentation/viewmodel/registration_viewmodel.dart';
 import 'package:obd_app/src/common/buttons.dart';
-
-import '../../../data/dto/http_response/http_response.dart';
+import 'package:email_validator/email_validator.dart';
 
 class RegistrationPage extends StatefulWidget {
   RegistrationPage({Key? key}) : super(key: key);
@@ -16,6 +15,10 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState
     extends ModularState<RegistrationPage, RegistrationViewModel> {
+  String _emailInputErrorMessage = '';
+  String _passwordInputErrorMessage = '';
+  String _passwordConfirmationInputErrorMessage = '';
+  String _nameInputErrorMessage = '';
   final _viewModel = Modular.get<RegistrationViewModel>();
   late ColorScheme _colors;
   late ThemeData _theme;
@@ -78,6 +81,7 @@ class _RegistrationPageState
         child: Form(
           child: TextFormField(
             onChanged: (value) {
+              validateName(value);
               _viewModel.name = value;
             },
             cursorColor: Colors.white,
@@ -124,6 +128,7 @@ class _RegistrationPageState
         child: Form(
           child: TextField(
             onChanged: (value) {
+              validateEmail(value);
               _viewModel.email = value;
             },
             textAlign: TextAlign.start,
@@ -171,6 +176,7 @@ class _RegistrationPageState
           child: TextField(
             obscureText: true,
             onChanged: (value) {
+              validatePassword(value);
               _viewModel.password = value;
             },
             textAlign: TextAlign.start,
@@ -218,6 +224,7 @@ class _RegistrationPageState
           child: TextField(
             obscureText: true,
             onChanged: (value) {
+              validateConfirmationPassword(value);
               _viewModel.passwordConfirm = value;
             },
             textAlign: TextAlign.start,
@@ -256,35 +263,38 @@ class _RegistrationPageState
         ),
       );
 
-  Widget get _buttonRegister => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 360,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(bottom: 5),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_viewModel.password == _viewModel.passwordConfirm) {
-                      _register();
-                    }
-                  },
-                  child: Text(
-                    'Register'.i18n(),
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 20,
+  Widget get _buttonRegister => Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 360,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(bottom: 5),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_viewModel.password == _viewModel.passwordConfirm) {
+                        _register();
+                      }
+                    },
+                    child: Text(
+                      'Register'.i18n(),
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       );
 
   Widget get _buttonGoToLogin => widget.secondaryButton(
@@ -311,7 +321,7 @@ class _RegistrationPageState
                   Radius.circular(30),
                 ),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.43,
+                  height: MediaQuery.of(context).size.height * 0.44,
                   width: MediaQuery.of(context).size.width * 0.85,
                   decoration: BoxDecoration(color: Colors.black87),
                   child: Column(
@@ -322,18 +332,37 @@ class _RegistrationPageState
                         mainAxisAlignment: MainAxisAlignment.center,
                       ),
                       _nameInput,
-                      SizedBox(
-                        height: 25,
+                      Padding(
+                        padding: const EdgeInsets.all(5.5),
+                        child: Text(
+                          _nameInputErrorMessage,
+                          style: TextStyle(color: Colors.red),
+                        ),
                       ),
                       _emailInput,
-                      SizedBox(
-                        height: 25,
+                      Padding(
+                        padding: const EdgeInsets.all(5.5),
+                        child: Text(
+                          _emailInputErrorMessage,
+                          style: TextStyle(color: Colors.red),
+                        ),
                       ),
                       _passwordInput,
-                      SizedBox(
-                        height: 25,
+                      Padding(
+                        padding: const EdgeInsets.all(5.5),
+                        child: Text(
+                          _passwordInputErrorMessage,
+                          style: TextStyle(color: Colors.red),
+                        ),
                       ),
                       _passwordConfirmInput,
+                      Padding(
+                        padding: const EdgeInsets.all(5.5),
+                        child: Text(
+                          _passwordConfirmationInputErrorMessage,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -342,4 +371,67 @@ class _RegistrationPageState
           )
         ],
       );
+
+  void validateEmail(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        _emailInputErrorMessage = "Email can not be empty".i18n();
+      });
+    } else if (!EmailValidator.validate(value, true)) {
+      setState(() {
+        _emailInputErrorMessage = "Email is invalid".i18n();
+      });
+    } else {
+      setState(() {
+        _emailInputErrorMessage = "";
+      });
+    }
+  }
+
+  void validatePassword(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        _passwordInputErrorMessage = "Password can not be empty".i18n();
+      });
+    } else if (value.length < 6) {
+      setState(() {
+        _passwordInputErrorMessage =
+            "Password must be at least 6 characters".i18n();
+      });
+    } else {
+      setState(() {
+        _passwordInputErrorMessage = "";
+      });
+    }
+  }
+
+  void validateName(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        _nameInputErrorMessage = "Name can not be empty".i18n();
+      });
+    } else {
+      setState(() {
+        _nameInputErrorMessage = "";
+      });
+    }
+  }
+
+  void validateConfirmationPassword(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        _passwordConfirmationInputErrorMessage =
+            "Password can not be empty".i18n();
+      });
+    } else if (value.length < 6) {
+      setState(() {
+        _passwordConfirmationInputErrorMessage =
+            "Password must be at least 6 characters".i18n();
+      });
+    } else {
+      setState(() {
+        _passwordConfirmationInputErrorMessage = "";
+      });
+    }
+  }
 }

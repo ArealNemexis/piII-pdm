@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:localization/localization.dart';
 import 'package:obd_app/src/common/buttons.dart';
+import 'package:email_validator/email_validator.dart';
 
 import '../../viewmodel/login_viewmodel.dart';
 
@@ -14,6 +15,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
+  String _passwordInputErrorMessage = '';
+  String _emailInputErrorMessage = '';
+
   final _viewModel = Modular.get<LoginViewModel>();
   late ColorScheme _colors;
   late ThemeData _theme;
@@ -61,7 +65,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
       );
 
   Widget get _emailInput => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.only(top: 15),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
           width: MediaQuery.of(context).size.width * 0.85,
@@ -70,6 +74,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
           child: Form(
             child: TextFormField(
               onChanged: (value) {
+                validateEmail(value);
                 _viewModel.email = value;
               },
               cursorColor: _theme.brightness == Brightness.dark
@@ -117,7 +122,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
       );
 
   Widget get _passwordInput => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.only(top: 8),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
           width: MediaQuery.of(context).size.width * 0.85,
@@ -127,6 +132,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
             child: TextFormField(
               obscureText: true,
               onChanged: (value) {
+                validatePassword(value);
                 _viewModel.password = value;
               },
               cursorColor: _theme.brightness == Brightness.dark
@@ -188,7 +194,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                   Radius.circular(30),
                 ),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.26,
+                  height: MediaQuery.of(context).size.height * 0.30,
                   width: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
                     color: _theme.colorScheme.onBackground,
@@ -198,8 +204,22 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _emailInput,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.5),
+                        child: Text(
+                          _emailInputErrorMessage,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
                       _passwordInput,
-                      _buildForgotPassword
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.5),
+                        child: Text(
+                          _passwordInputErrorMessage,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                      _buildForgotPassword,
                     ],
                   ),
                 ),
@@ -238,7 +258,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                 Stack(children: [
                   _inputBoxLogin,
                   Padding(
-                    padding: const EdgeInsets.only(left: 125, top: 230),
+                    padding: const EdgeInsets.only(left: 125, top: 265),
                     child: ElevatedButton(
                       style: ButtonStyle(
                           minimumSize:
@@ -275,5 +295,38 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
         ),
       ),
     );
+  }
+
+  void validatePassword(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        _passwordInputErrorMessage = "Password can not be empty".i18n();
+      });
+    } else if (value.length < 6) {
+      setState(() {
+        _passwordInputErrorMessage =
+            "Password must be at least 6 characters".i18n();
+      });
+    } else {
+      setState(() {
+        _passwordInputErrorMessage = "";
+      });
+    }
+  }
+
+  void validateEmail(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        _emailInputErrorMessage = "Email can not be empty".i18n();
+      });
+    } else if (!EmailValidator.validate(value, true)) {
+      setState(() {
+        _emailInputErrorMessage = "Email is invalid".i18n();
+      });
+    } else {
+      setState(() {
+        _emailInputErrorMessage = "";
+      });
+    }
   }
 }

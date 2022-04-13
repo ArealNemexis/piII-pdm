@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,6 +28,7 @@ class GetConfirmationTokenPage extends StatefulWidget {
 
 class _GetConfirmationTokenPageState
     extends ModularState<GetConfirmationTokenPage, ConfirmationTokenViewModel> {
+  String _emailInputErrorMessage = '';
   final _viewModel = Modular.get<ConfirmationTokenViewModel>();
   late ColorScheme _colors;
   late ThemeData _theme;
@@ -118,6 +120,13 @@ class _GetConfirmationTokenPageState
                         ],
                       ),
                       _buildEmail,
+                      Padding(
+                        padding: const EdgeInsets.all(5.5),
+                        child: Text(
+                          _emailInputErrorMessage,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -149,7 +158,7 @@ class _GetConfirmationTokenPageState
             cursorColor: Colors.black,
             showCursor: false,
             onChanged: (value) {
-              _viewModel.email = value;
+              validateEmail(value);
             },
             textAlign: TextAlign.center,
             decoration: InputDecoration(
@@ -175,7 +184,7 @@ class _GetConfirmationTokenPageState
                 ),
                 filled: true,
                 hoverColor: Colors.yellow.shade200,
-                contentPadding: EdgeInsets.only(top: 17, left: 15),
+                contentPadding: EdgeInsets.only(top: 17, left: 50),
                 prefixIcon: Icon(
                   Icons.email_outlined,
                   color: Colors.black87,
@@ -220,4 +229,20 @@ class _GetConfirmationTokenPageState
           ),
         ],
       );
+
+  void validateEmail(String value) {
+    if (value.isEmpty) {
+      setState(() {
+        _emailInputErrorMessage = "Email can not be empty".i18n();
+      });
+    } else if (!EmailValidator.validate(value, true)) {
+      setState(() {
+        _emailInputErrorMessage = "Email is invalid".i18n();
+      });
+    } else {
+      setState(() {
+        _emailInputErrorMessage = "";
+      });
+    }
+  }
 }
