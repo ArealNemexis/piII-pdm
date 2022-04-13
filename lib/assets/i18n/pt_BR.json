@@ -11,5 +11,7 @@
     "register": "Cadastre-se",
     "new_password": "Nova senha",
     "new_password_confirm": "Repita a senha",
-    "save": "Salvar"
+    "save": "Salvar",
+    "next": "Proximo",
+    "skip": "Pular"
 }
