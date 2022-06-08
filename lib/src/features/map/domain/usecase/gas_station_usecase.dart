@@ -1,16 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:obd_app/src/features/map/domain/repository/gas_station_repository.dart';
+import 'package:obd_app/src/features/map/presetation/view/page/gas_station_page.dart';
+import 'package:obd_app/src/features/map/presetation/widgets/gas_station_datails.dart';
 
 class GasStationUseCase extends ChangeNotifier {
 
   double lat = 0.0;
   double long = 0.0;
   String err = "";
+  Set<Marker> markers = Set<Marker>();
+  late GoogleMapController _mapsController;
 
   controlPoints() {
     getPosition();
 
+  }
+
+  get mapsController => _mapsController;
+
+  onMapCreated(GoogleMapController gmc) async {
+    _mapsController = gmc;
+    getPosition();
+    loadGasStation();
   }
 
   getPosition() async {
@@ -24,6 +38,30 @@ class GasStationUseCase extends ChangeNotifier {
       err = e.toString();
     }
 
+    notifyListeners();
+  }
+
+  loadGasStation() {
+    final gasStations = GasStationRepository().gasStations;
+    gasStations.forEach((gasStation) async{
+      markers.add(
+        Marker(
+          markerId: MarkerId(gasStation.name),
+          position: LatLng(gasStation.latitude, gasStation.longitude),
+          icon: await BitmapDescriptor.fromAssetImage(
+              ImageConfiguration(),
+              'lib/assets/images/posto.png'),
+
+          onTap: ()=> {
+            showModalBottomSheet(
+                context: appKey.currentState!.context,
+                builder: (context) => GasStationDetails(gasStation: gasStation),
+            )
+
+            },
+        ),
+      );
+    });
     notifyListeners();
   }
 
