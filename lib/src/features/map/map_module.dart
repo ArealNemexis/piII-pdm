@@ -1,0 +1,21 @@
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:obd_app/src/features/map/presetation/view/page/map_page.dart';
+import 'package:obd_app/src/features/map/presetation/viewmodel/map_viewmodel.dart';
+
+import 'data/repository/map_repository.dart';
+import 'domain/repository/map_interface.dart';
+import 'domain/usecase/map_usecase.dart';
+
+class MapModule extends Module {
+  @override
+  List<Bind<Object>> get binds => [
+        Bind.factory((i) => MapViewModel()),
+        Bind.factory((i) => MapUseCase()),
+        Bind.factory<IMap>((i) => MapRepository()),
+      ];
+
+  @override
+  List<ModularRoute> get routes => [
+        ChildRoute('/', child: (_, __) => const MapPage()),
+      ];
+}

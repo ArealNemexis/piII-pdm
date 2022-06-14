@@ -6,10 +6,11 @@ part of 'new_password_viewmodel.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$NewPasswordViewModel on _NewPasswordViewModelBase, Store {
-  final _$passwordAtom = Atom(name: '_NewPasswordViewModelBase.password');
+  late final _$passwordAtom =
+      Atom(name: '_NewPasswordViewModelBase.password', context: context);
 
   @override
   String get password {
@@ -24,7 +25,8 @@ mixin _$NewPasswordViewModel on _NewPasswordViewModelBase, Store {
     });
   }
 
-  final _$sucessAtom = Atom(name: '_NewPasswordViewModelBase.sucess');
+  late final _$sucessAtom =
+      Atom(name: '_NewPasswordViewModelBase.sucess', context: context);
 
   @override
   bool get sucess {
@@ -39,8 +41,8 @@ mixin _$NewPasswordViewModel on _NewPasswordViewModelBase, Store {
     });
   }
 
-  final _$passwordConfirmAtom =
-      Atom(name: '_NewPasswordViewModelBase.passwordConfirm');
+  late final _$passwordConfirmAtom =
+      Atom(name: '_NewPasswordViewModelBase.passwordConfirm', context: context);
 
   @override
   String get passwordConfirm {
@@ -55,8 +57,8 @@ mixin _$NewPasswordViewModel on _NewPasswordViewModelBase, Store {
     });
   }
 
-  final _$_NewPasswordViewModelBaseActionController =
-      ActionController(name: '_NewPasswordViewModelBase');
+  late final _$_NewPasswordViewModelBaseActionController =
+      ActionController(name: '_NewPasswordViewModelBase', context: context);
 
   @override
   void validateEqualPassword() {
@@ -110,7 +112,8 @@ mixin _$NewPasswordError on _NewPasswordErrorBase, Store {
               name: '_NewPasswordErrorBase.hasErrors'))
           .value;
 
-  final _$passwordAtom = Atom(name: '_NewPasswordErrorBase.password');
+  late final _$passwordAtom =
+      Atom(name: '_NewPasswordErrorBase.password', context: context);
 
   @override
   String? get password {
@@ -125,8 +128,8 @@ mixin _$NewPasswordError on _NewPasswordErrorBase, Store {
     });
   }
 
-  final _$passwordConfirmAtom =
-      Atom(name: '_NewPasswordErrorBase.passwordConfirm');
+  late final _$passwordConfirmAtom =
+      Atom(name: '_NewPasswordErrorBase.passwordConfirm', context: context);
 
   @override
   String? get passwordConfirm {

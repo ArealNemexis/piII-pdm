@@ -6,10 +6,11 @@ part of 'registration_viewmodel.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
-  final _$emailAtom = Atom(name: '_RegistrationViewmodelBase.email');
+  late final _$emailAtom =
+      Atom(name: '_RegistrationViewmodelBase.email', context: context);
 
   @override
   String get email {
@@ -24,7 +25,8 @@ mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
     });
   }
 
-  final _$passwordAtom = Atom(name: '_RegistrationViewmodelBase.password');
+  late final _$passwordAtom =
+      Atom(name: '_RegistrationViewmodelBase.password', context: context);
 
   @override
   String get password {
@@ -39,7 +41,8 @@ mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
     });
   }
 
-  final _$nameAtom = Atom(name: '_RegistrationViewmodelBase.name');
+  late final _$nameAtom =
+      Atom(name: '_RegistrationViewmodelBase.name', context: context);
 
   @override
   String get name {
@@ -54,8 +57,8 @@ mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
     });
   }
 
-  final _$passwordConfirmAtom =
-      Atom(name: '_RegistrationViewmodelBase.passwordConfirm');
+  late final _$passwordConfirmAtom = Atom(
+      name: '_RegistrationViewmodelBase.passwordConfirm', context: context);
 
   @override
   String get passwordConfirm {
@@ -70,8 +73,8 @@ mixin _$RegistrationViewModel on _RegistrationViewmodelBase, Store {
     });
   }
 
-  final _$_RegistrationViewmodelBaseActionController =
-      ActionController(name: '_RegistrationViewmodelBase');
+  late final _$_RegistrationViewmodelBaseActionController =
+      ActionController(name: '_RegistrationViewmodelBase', context: context);
 
   @override
   void validateEqualPassword() {
@@ -126,7 +129,8 @@ mixin _$RegistrationError on _RegistrationErrorBase, Store {
               name: '_RegistrationErrorBase.hasErrors'))
           .value;
 
-  final _$passwordAtom = Atom(name: '_RegistrationErrorBase.password');
+  late final _$passwordAtom =
+      Atom(name: '_RegistrationErrorBase.password', context: context);
 
   @override
   String? get password {
@@ -141,8 +145,8 @@ mixin _$RegistrationError on _RegistrationErrorBase, Store {
     });
   }
 
-  final _$passwordConfirmAtom =
-      Atom(name: '_RegistrationErrorBase.passwordConfirm');
+  late final _$passwordConfirmAtom =
+      Atom(name: '_RegistrationErrorBase.passwordConfirm', context: context);
 
   @override
   String? get passwordConfirm {
