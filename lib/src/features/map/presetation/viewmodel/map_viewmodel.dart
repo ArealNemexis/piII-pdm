@@ -6,6 +6,8 @@ import '../../../auth/domain/model/user.dart';
 import '../../domain/model/coordinates.dart';
 import '../../domain/usecase/map_usecase.dart';
 
+part 'map_viewmodel.g.dart';
+
 class MapViewModel = _MapViewModelBase with _$MapViewModel;
 
 abstract class _MapViewModelBase with Store {
