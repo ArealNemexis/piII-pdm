@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "fit-freehold-352622",
+  "private_key_id": "1a61fe870ca304c52770a338870d5cb383294dea",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCZXSqMGVqAyjpm\ngw1Sz2NO1j527mdUiigYHTYzn2GTd75btnsDGpdFgLO9USNM0PbPDHHWkME4xNsN\ngHlNyO3N/dTnvuMGa7EPGRUrwrlUQoF2Jdtv5Wx7MPM1kMb9SzOdsqNoTmEjA2yC\naHbPdJMWJmj/095TPcrz1gmrIcayCJbFxGn7n/rliWxsSPLCRwPsRIliD1jH+ofw\nirPtQ6woAhLr+G8scnXrBL4m6nsNiinXPB8am6O+3qyn0ug9Y7SgktQEdBVuCMrz\nS1FsgE3Uv/5k78Ej2SDMGRe4FfmbQHtlNlmhfsK2JxuCi/JhjWvoClVcIlbfD5aX\n6NoI+rTFAgMBAAECggEAFBzYh1qM2K6MxaRisy1BAhYNR5Yg5YCf3Pe5w7/fcVJH\nG+p8y+2pEIOeLtIM/dY6w/EHHeNKf8orSyRB5E5ZR4ZGLWVGizFE3WzF7sEBApid\nN1QkKNLO7QIAp1H3EsFRwdjrXrLGwOuCR8Dw8eiBIKrFYuWTdtm3+83iYzfRAchz\n/TolS0ENWF2Ew/oS13Tsn0gG8hWQr9g++9PYr8W+I0YDEMv3XJ85CNw1qwikIUUn\nbusaV3QgzaxZp52ob+V5IRa3nsuv03RD+AyH9FuuNmng3EWXHJ4qAAHA/Y593fZa\nFjplUZvKp21B+/OK64JbPGUp/tXoQFsiHV+PPSJ1MQKBgQDTzCf9YAQ45DekfOyL\novjVHjGGWCZU9DE2q8bZ4LWk/CEwHRdtUuaFlChzeqbHMmeOUozYu7OBBM2rAOap\nklPErSr1WSqenYbHjjdiS6MPsALCOhD1cg9CdIP00NS8aumA8ZOzd6+i++it9ec5\nm4+rPVX06Fo+I2zqUSh40sGMtQKBgQC5Xwq9/DNKC8c8mRWQKJVJRVTairXbhcej\nwflWwB6aSDjzs8fPshQCgY0J603RPf4fGgGhwFgKP7t3nngji/nnEqXiezQtvRt0\nyWsOk+31NAJScziWgYzKIoqsmbkwIRNXVfZBhH7dvvAOoZqx/uGH5x7KBwW2iWuZ\npxhoZjWh0QKBgQClmMVXlUAX31AmGsq0LvtRXmcofDmUSM1Fyq8SYWCEm+GzBbvw\nbVXx8TJjf+1wZ9eR7rdTKgcihEfuQSkYQmGesCqbZFkvZUkhM+/Xuf3HYT328IGb\n9s85jXIy8yiyHQFvIPLz6kt4Km/1vANLBnchUzam4xjT5szctBHpzhco1QKBgCi7\nsr+WqKqPtgMh3HQmBs/n9UJkkpufZQQd/q1KYC8kyab7jV+dUPpP/277jsj451ts\nOomRm4b9BDO/1cRx4MMe/OasjgWy9VKPY//7D6H/ALefbALeitJsDq7oxKHH0tkx\nIYC6HaqaZ2O/rR+J04MqjUB1lJLM1aEY76sZMpXRAoGBAMRH+pY7hUlueglEQ0Gv\n8RUuf6XjFbWs4fgSasRi2UruU3q7BMHwK7D22KE+ZtFiWsWQf2QWqZ2EZRA6jUqo\nXR/P5o7lf48RTau4DifXys5F9lMK/mW6FyL3lt8dtV9sws9j0TLR7xWS5tmJAoyI\n9ELcoLkpVo6BhyvyI0BSBfEj\n-----END PRIVATE KEY-----\n",
+  "client_email": "chatbotcar@fit-freehold-352622.iam.gserviceaccount.com",
+  "client_id": "114214034458160910548",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chatbotcar%40fit-freehold-352622.iam.gserviceaccount.com"
+}
