@@ -89,6 +89,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                     children: [
                       _buildMarca,
                       _buildModelo,
+                      _buildPlaca,
                       _buildAno,
                     ],
                   ),
@@ -99,8 +100,8 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
         ],
       );
 
-  Widget get _buildMarca => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15),
+   Widget get _buildMarca => Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
           width: MediaQuery.of(context).size.width * 0.85,
@@ -108,6 +109,9 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
           alignment: Alignment.center,
           child: Form(
             child: TextFormField(
+              onChanged: (value) {
+                _viewModel.brand = value;
+              },
               decoration: InputDecoration(
                   hintText: "Marca",
                   hintStyle: TextStyle(
@@ -153,7 +157,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
           child: Form(
             child: TextFormField(
               onChanged: (value) {
-                // _viewModel.email = value;
+                _viewModel.model = value;
               },
               decoration: InputDecoration(
                   hintText: "Modelo",
@@ -200,7 +204,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
           child: Form(
             child: TextFormField(
               onChanged: (value) {
-                // _viewModel.email = value;
+                 _viewModel.year = value as int?;
               },
               decoration: InputDecoration(
                   hintText: "Ano",
@@ -236,6 +240,54 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
           ),
         ),
       );
+
+    Widget get _buildPlaca => Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          width: MediaQuery.of(context).size.width * 0.85,
+          height: 50,
+          alignment: Alignment.center,
+          child: Form(
+            child: TextFormField(
+              onChanged: (value) {
+                 _viewModel.board = value;
+              },
+              decoration: InputDecoration(
+                  hintText: "Placa",
+                  hintStyle: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 20,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: (Colors.yellow[700])!,
+                      width: 2.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: (Colors.yellow[700])!,
+                      width: 3.0,
+                    ),
+                  ),
+                  filled: true,
+                  hoverColor: Colors.yellow.shade200,
+                  contentPadding: EdgeInsets.all(15),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(8),
+                    // child: SvgPicture.asset(
+                    //   'lib/assets/images/locker.svg',
+                    //   color: _theme.colorScheme.secondary,
+                    // ),
+                  )),
+            ),
+          ),
+        ),
+      );
+
 
   Widget get _buildRegButton => Row(
         mainAxisAlignment: MainAxisAlignment.center,
