@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import '../viewmodel/car_register_viewmodel.dart';
 
-class RegisterCar extends StatefulWidget {
-  const RegisterCar({Key? key}) : super(key: key);
+class RegisterCarPage extends StatefulWidget {
+  const RegisterCarPage({Key? key}) : super(key: key);
 
   @override
-  _RegisterCarState createState() => _RegisterCarState();
+ State<RegisterCarPage> createState() => _RegisterCarPageState();
 }
 
-class _RegisterCarState extends State<RegisterCar> {
-  // late ColorScheme _colors;
-  // late ThemeData _theme;
-  // void _login() {
-  //   _viewModel.login();
-  // }
+class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterViewModel> {
+  final _viewModel = Modular.get<CarRegisterViewModel>();
+  
+  late ColorScheme _colors;
+  late ThemeData _theme;
+
+   void _registerCar() async {
+     int? response = await _viewModel.registerCar();
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -247,7 +252,7 @@ class _RegisterCarState extends State<RegisterCar> {
                 // margin: EdgeInsets.only(bottom: 20),
                 child: ElevatedButton(
                   onPressed: () {
-                    // _login();
+                    _registerCar();
                   },
                   child: Text(
                     'Cadastrar',
