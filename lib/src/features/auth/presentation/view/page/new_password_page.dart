@@ -14,6 +14,7 @@ class NewPasswordPage extends StatefulWidget {
 }
 
 class _NewPasswordPageState
+    // ignore: deprecated_member_use
     extends ModularState<NewPasswordPage, NewPasswordViewModel> {
   final _viewModel = Modular.get<NewPasswordViewModel>();
   late ColorScheme _colors;

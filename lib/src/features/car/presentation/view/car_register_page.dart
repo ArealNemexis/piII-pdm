@@ -9,6 +9,7 @@ class RegisterCarPage extends StatefulWidget {
  State<RegisterCarPage> createState() => _RegisterCarPageState();
 }
 
+// ignore: deprecated_member_use
 class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterViewModel> {
   final _viewModel = Modular.get<CarRegisterViewModel>();
   
