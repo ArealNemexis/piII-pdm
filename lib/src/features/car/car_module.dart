@@ -16,6 +16,6 @@ class CarModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/register-car', child: (_, __) => const RegisterCarPage(), children: []),
+        ChildRoute('/', child: (_, __) => const RegisterCarPage(), children: []),
       ];
 }
