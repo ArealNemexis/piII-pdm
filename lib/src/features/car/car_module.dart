@@ -5,7 +5,7 @@ import 'domain/usecase/car_register_usecase.dart';
 import 'presentation/view/car_register_page.dart';
 import 'presentation/viewmodel/car_register_viewmodel.dart';
 
-class AuthModule extends Module {
+class CarModule extends Module {
   @override
   List<Bind<Object>> get binds => [
        

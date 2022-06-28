@@ -13,7 +13,6 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-// ignore: deprecated_member_use
 class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
   final _viewModel = Modular.get<LoginViewModel>();
   late ColorScheme _colors;

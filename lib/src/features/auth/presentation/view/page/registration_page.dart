@@ -15,7 +15,7 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState
-    // ignore: deprecated_member_use
+    
     extends ModularState<RegistrationPage, RegistrationViewModel> {
   final _viewModel = Modular.get<RegistrationViewModel>();
   late ColorScheme _colors;

@@ -26,7 +26,7 @@ class GetConfirmationTokenPage extends StatefulWidget {
 }
 
 class _GetConfirmationTokenPageState
-    // ignore: deprecated_member_use
+    
     extends ModularState<GetConfirmationTokenPage, ConfirmationTokenViewModel> {
   final _viewModel = Modular.get<ConfirmationTokenViewModel>();
   late ColorScheme _colors;

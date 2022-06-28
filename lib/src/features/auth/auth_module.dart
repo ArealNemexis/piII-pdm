@@ -15,8 +15,8 @@ import 'package:obd_app/src/features/auth/presentation/view/page/registration_pa
 import 'package:obd_app/src/features/auth/presentation/viewmodel/get_confirmation_token_viewmodel.dart';
 import 'package:obd_app/src/features/auth/presentation/viewmodel/new_password/new_password_viewmodel.dart';
 import 'package:obd_app/src/features/auth/presentation/viewmodel/registration_viewmodel.dart';
-import 'package:obd_app/src/features/home/home_module.dart';
 
+import '../car/car_module.dart';
 import 'data/repository/login_repository.dart';
 import 'domain/repository/login_interface.dart';
 import 'domain/usecase/login_usecase.dart';
@@ -49,6 +49,6 @@ class AuthModule extends Module {
             child: (_, __) => RegistrationPage(), children: []),
         ChildRoute('/new-password',
             child: (_, __) => NewPasswordPage(), children: []),
-        ModuleRoute('/home', module: HomeModule())
+        ModuleRoute('/register-car', module: CarModule())
       ];
 }
