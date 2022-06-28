@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_svg/svg.dart';
 import '../viewmodel/car_register_viewmodel.dart';
+import 'package:localization/localization.dart';
 
 class RegisterCarPage extends StatefulWidget {
   const RegisterCarPage({Key? key}) : super(key: key);
 
   @override
- State<RegisterCarPage> createState() => _RegisterCarPageState();
+  State<RegisterCarPage> createState() => _RegisterCarPageState();
 }
 
 // ignore: deprecated_member_use
-class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterViewModel> {
+class _RegisterCarPageState
+    extends ModularState<RegisterCarPage, CarRegisterViewModel> {
   final _viewModel = Modular.get<CarRegisterViewModel>();
-  
+
   late ColorScheme _colors;
   late ThemeData _theme;
 
-   void _registerCar() async {
-     int? response = await _viewModel.registerCar();
-   }
+  void _registerCar() async {
+    int? response = await _viewModel.registerCar();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +30,14 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(255, 193, 7, 1),
           title: Text(
-            'Cadastrar Carro',
+            'cadastrocar'.i18n(),
             style: const TextStyle(
               color: Colors.black87,
               fontSize: 25,
             ),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 66, 66, 66),
+        backgroundColor: Colors.white,
         body: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -42,7 +45,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
               children: [
                 _buildImgCarro,
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.42,
+                  height: MediaQuery.of(context).size.height * 0.5,
                   child: Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
@@ -64,7 +67,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // SvgPicture.asset("lib/assets/images/car_obd.svg"),
+            SvgPicture.asset("lib/assets/images/car_obd.svg"),
           ],
         ),
       );
@@ -79,10 +82,10 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                   Radius.circular(30),
                 ),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.32,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   width: MediaQuery.of(context).size.width * 0.8,
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 66, 66, 66),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,7 +104,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
         ],
       );
 
-   Widget get _buildMarca => Container(
+  Widget get _buildMarca => Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
@@ -114,7 +117,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                 _viewModel.brand = value;
               },
               decoration: InputDecoration(
-                  hintText: "Marca",
+                  hintText: "marca".i18n(),
                   hintStyle: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 20,
@@ -138,10 +141,10 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                   contentPadding: EdgeInsets.all(15),
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8),
-                    // child: SvgPicture.asset(
-                    //   'lib/assets/images/locker.svg',
-                    //   color: _theme.colorScheme.secondary,
-                    // ),
+                    child: SvgPicture.asset(
+                      'lib/assets/images/locker.svg',
+                      // color: _theme.colorScheme.secondary,
+                    ),
                   )),
             ),
           ),
@@ -161,7 +164,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                 _viewModel.model = value;
               },
               decoration: InputDecoration(
-                  hintText: "Modelo",
+                  hintText: "modelo".i18n(),
                   hintStyle: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 20,
@@ -185,10 +188,10 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                   contentPadding: EdgeInsets.all(15),
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8),
-                    // child: SvgPicture.asset(
-                    //   'lib/assets/images/locker.svg',
-                    //   color: _theme.colorScheme.secondary,
-                    // ),
+                    child: SvgPicture.asset(
+                      'lib/assets/images/locker.svg',
+                      // color: _theme.colorScheme.secondary,
+                    ),
                   )),
             ),
           ),
@@ -205,10 +208,10 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
           child: Form(
             child: TextFormField(
               onChanged: (value) {
-                 _viewModel.year = value as int?;
+                _viewModel.year = value;
               },
               decoration: InputDecoration(
-                  hintText: "Ano",
+                  hintText: "ano".i18n(),
                   hintStyle: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 20,
@@ -232,17 +235,17 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                   contentPadding: EdgeInsets.all(15),
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8),
-                    // child: SvgPicture.asset(
-                    //   'lib/assets/images/locker.svg',
-                    //   color: _theme.colorScheme.secondary,
-                    // ),
+                    child: SvgPicture.asset(
+                      'lib/assets/images/locker.svg',
+                      // color: _theme.colorScheme.secondary,
+                    ),
                   )),
             ),
           ),
         ),
       );
 
-    Widget get _buildPlaca => Container(
+  Widget get _buildPlaca => Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
@@ -252,10 +255,10 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
           child: Form(
             child: TextFormField(
               onChanged: (value) {
-                 _viewModel.board = value;
+                _viewModel.board = value;
               },
               decoration: InputDecoration(
-                  hintText: "Placa",
+                  hintText: "placa".i18n(),
                   hintStyle: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 20,
@@ -279,16 +282,15 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                   contentPadding: EdgeInsets.all(15),
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8),
-                    // child: SvgPicture.asset(
-                    //   'lib/assets/images/locker.svg',
-                    //   color: _theme.colorScheme.secondary,
-                    // ),
+                    child: SvgPicture.asset(
+                      'lib/assets/images/locker.svg',
+                      // color: _theme.colorScheme.secondary,
+                    ),
                   )),
             ),
           ),
         ),
       );
-
 
   Widget get _buildRegButton => Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -308,7 +310,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                     _registerCar();
                   },
                   child: Text(
-                    'Cadastrar',
+                    'register'.i18n(),
                     style: const TextStyle(
                       color: Colors.black87,
                       fontSize: 25,
@@ -316,7 +318,7 @@ class _RegisterCarPageState extends ModularState<RegisterCarPage, CarRegisterVie
                   ),
                   style: ElevatedButton.styleFrom(
                       primary: const Color.fromRGBO(255, 193, 7, 1),
-                      fixedSize: const Size(180, 55),
+                      fixedSize: const Size(190, 55),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50))),
                 ),

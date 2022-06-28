@@ -6,23 +6,23 @@ import '../../domain/usecase/car_register_usecase.dart';
 part 'car_register_viewmodel.g.dart';
 
 class CarRegisterViewModel = _CarRegisterViewModelBase
-               with _$CarRegisterViewModel;
+    with _$CarRegisterViewModel;
 
 abstract class _CarRegisterViewModelBase with Store {
   final _usecase = Modular.get<RegisterCarUseCase>();
   final error = CarRegisterError();
 
-   @observable
-   String board = '';
+  @observable
+  String board = '';
 
-   @observable
-   String brand = '';
+  @observable
+  String brand = '';
 
-   @observable
-   String model = '';
+  @observable
+  String model = '';
 
-   @observable
-   int? year;
+  @observable
+  String? year;
 
   @action
   String? validateEmptyBoard(String validateBoard) {
@@ -48,45 +48,44 @@ abstract class _CarRegisterViewModelBase with Store {
     error.year = year;
   }
 
-Future<int?> registerCar() async{
-  validateCarForm();
-  if(!error.hasErrors) {
-    int? response = await _usecase.registerCar(brand, model, board, year!);
+  Future<int?> registerCar() async {
+    validateCarForm();
+    if (!error.hasErrors) {
+      int? response = await _usecase.registerCar(brand, model, board, year!);
 
-    if(response == 200){
-      Modular.to.navigate("/show-cars");
+      if (response == 200) {
+        Modular.to.navigate("/show-cars");
+      }
+      return response;
+    } else {
+      return null;
     }
-    return response;
-  }else {
-    return null;
   }
 }
-}        
 
 class CarRegisterError = _CarRegisterErrorBase with _$CarRegisterError;
 
 abstract class _CarRegisterErrorBase with Store {
+  @observable
+  String? board;
 
-   @observable
-   String? board;
+  @observable
+  String? brand;
 
-   @observable
-   String? brand;
+  @observable
+  String? model;
 
-   @observable
-   String? model;
+  @observable
+  String? year;
 
-   @observable
-   int? year;
+  @computed
+  bool get hasErrors =>
+      board != null || brand != null || model != null || year != null;
 
-   @computed
-   bool get hasErrors => board != null || brand != null || model != null || year != null;
-
-   void clear() {
-     board = null;
-     brand = null;
-     model = null;
-     year = null;
+  void clear() {
+    board = null;
+    brand = null;
+    model = null;
+    year = null;
   }
-
 }

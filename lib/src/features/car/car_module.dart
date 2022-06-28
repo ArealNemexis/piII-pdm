@@ -8,7 +8,6 @@ import 'presentation/viewmodel/car_register_viewmodel.dart';
 class CarModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-       
         Bind.factory((i) => CarRegisterViewModel()),
         Bind.factory((i) => RegisterCarUseCase()),
         Bind.factory<IRegisterCar>((i) => CarRegisterRepository()),
@@ -16,6 +15,7 @@ class CarModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (_, __) => const RegisterCarPage(), children: []),
+        ChildRoute('/',
+            child: (_, __) => const RegisterCarPage(), children: []),
       ];
 }

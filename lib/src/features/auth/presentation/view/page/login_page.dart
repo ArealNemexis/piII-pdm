@@ -107,7 +107,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginViewModel> {
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8),
                     child: SvgPicture.asset(
-                      'lib/assets/images/locker.svg',
+                      'lib/assets/images/user.svg',
                       color: _theme.colorScheme.secondary,
                     ),
                   )),

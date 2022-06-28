@@ -8,8 +8,14 @@
     "email": "Email",
     "password": "Password",
     "enter": "Enter",
-    "register": "Sign up",
+    "msgemail": "Enter your registered email",
     "new_password": "New password",
     "new_password_confirm": "Repeat the password",
-    "save": "Save"
+    "save": "Save",
+    "send": "Send",
+    "cadastrocar": "Register Car",
+    "marca": "Brand",
+    "modelo": "Model",
+    "placa": "Board",
+    "ano": "Year"
 }

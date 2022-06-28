@@ -3,13 +3,19 @@
     "login": "Logar",
     "divider_text": "ou",
     "forget_pass": "Esqueci a Senha",
-    "register": "Criar Conta",
+    "register": "Cadastrar",
     "pass": "Senha",
     "email": "Email",
     "password": "Senha",
     "enter": "Entrar",
-    "register": "Cadastre-se",
+    "msgemail": "Insira seu e-mail cadastrado",
     "new_password": "Nova senha",
     "new_password_confirm": "Repita a senha",
-    "save": "Salvar"
+    "save": "Salvar",
+    "send": "Enviar",
+    "cadastrocar": "Cadastrar Carro",
+    "marca": "Marca",
+    "modelo": "Modelo",
+    "placa": "Placa",
+    "ano": "Ano"
 }

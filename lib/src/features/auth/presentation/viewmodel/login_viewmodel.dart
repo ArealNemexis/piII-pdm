@@ -29,7 +29,7 @@ abstract class _LoginViewModelBase with Store {
         int? val = await _usecase.login(email, password);
         print(val);
         if (val == 200) {
-          Modular.to.navigate('/home');
+          Modular.to.navigate('/register-car');
         }
       } catch (e) {
         error.email = "erro ${e.toString()}";

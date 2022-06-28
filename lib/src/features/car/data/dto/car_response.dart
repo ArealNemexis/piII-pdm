@@ -1,4 +1,4 @@
-class CarResponseDto{
+class CarResponseDto {
   CarResponseDto({
     required this.brand,
     required this.model,
@@ -9,21 +9,19 @@ class CarResponseDto{
   final String brand;
   final String model;
   final String board;
-  final int year;
+  final String year;
 
+  factory CarResponseDto.fromJson(Map<String, dynamic> json) => CarResponseDto(
+        brand: json["brand"],
+        model: json["model"],
+        board: json["board"],
+        year: json["year"],
+      );
 
-  factory CarResponseDto.fromJson(Map<String, dynamic> json)=>CarResponseDto(
-    brand: json["brand"],
-    model: json["model"],
-    board: json["board"],
-    year: json["year"],
-  );
-
-  Map<String, dynamic> toJason()=>{
-    "brand": brand,
-    "model": model,
-    "board": board,
-    "year": year,
-  };
-
+  Map<String, dynamic> toJason() => {
+        "brand": brand,
+        "model": model,
+        "board": board,
+        "year": year,
+      };
 }

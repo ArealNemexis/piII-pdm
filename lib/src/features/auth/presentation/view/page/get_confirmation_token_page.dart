@@ -26,7 +26,6 @@ class GetConfirmationTokenPage extends StatefulWidget {
 }
 
 class _GetConfirmationTokenPageState
-    
     extends ModularState<GetConfirmationTokenPage, ConfirmationTokenViewModel> {
   final _viewModel = Modular.get<ConfirmationTokenViewModel>();
   late ColorScheme _colors;
@@ -110,7 +109,7 @@ class _GetConfirmationTokenPageState
                             height: 70,
                           ),
                           Text(
-                            "insira seu e-mail cadastrado",
+                            "msgemail".i18n(),
                             style: TextStyle(
                               color: Colors.yellow[700],
                               fontSize: 20,
@@ -204,7 +203,7 @@ class _GetConfirmationTokenPageState
                     _getToken();
                   },
                   child: Text(
-                    'Enviar',
+                    'send'.i18n(),
                     style: TextStyle(
                       color: Colors.black87,
                       fontSize: 25,

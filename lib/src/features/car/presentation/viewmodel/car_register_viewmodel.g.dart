@@ -61,13 +61,13 @@ mixin _$CarRegisterViewModel on _CarRegisterViewModelBase, Store {
       Atom(name: '_CarRegisterViewModelBase.year', context: context);
 
   @override
-  int? get year {
+  String? get year {
     _$yearAtom.reportRead();
     return super.year;
   }
 
   @override
-  set year(int? value) {
+  set year(String? value) {
     _$yearAtom.reportWrite(value, super.year, () {
       super.year = value;
     });
@@ -192,13 +192,13 @@ mixin _$CarRegisterError on _CarRegisterErrorBase, Store {
       Atom(name: '_CarRegisterErrorBase.year', context: context);
 
   @override
-  int? get year {
+  String? get year {
     _$yearAtom.reportRead();
     return super.year;
   }
 
   @override
-  set year(int? value) {
+  set year(String? value) {
     _$yearAtom.reportWrite(value, super.year, () {
       super.year = value;
     });
