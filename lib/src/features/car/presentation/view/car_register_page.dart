@@ -119,7 +119,7 @@ class _RegisterCarPageState
               decoration: InputDecoration(
                   hintText: "marca".i18n(),
                   hintStyle: TextStyle(
-                    color: Colors.grey[700],
+                    color: Colors.white,
                     fontSize: 20,
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -141,9 +141,9 @@ class _RegisterCarPageState
                   contentPadding: EdgeInsets.all(15),
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8),
-                    child: SvgPicture.asset(
-                      'lib/assets/images/locker.svg',
-                      // color: _theme.colorScheme.secondary,
+                    child: Icon(
+                      Icons.car_rental,
+                      color: Colors.white,
                     ),
                   )),
             ),
@@ -166,7 +166,7 @@ class _RegisterCarPageState
               decoration: InputDecoration(
                   hintText: "modelo".i18n(),
                   hintStyle: TextStyle(
-                    color: Colors.grey[700],
+                    color: Colors.white,
                     fontSize: 20,
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -187,12 +187,11 @@ class _RegisterCarPageState
                   hoverColor: Colors.yellow.shade200,
                   contentPadding: EdgeInsets.all(15),
                   prefixIcon: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: SvgPicture.asset(
-                      'lib/assets/images/locker.svg',
-                      // color: _theme.colorScheme.secondary,
-                    ),
-                  )),
+                      padding: const EdgeInsets.all(8),
+                      child: Icon(
+                        Icons.ballot_rounded,
+                        color: Colors.white,
+                      ))),
             ),
           ),
         ),
@@ -213,7 +212,7 @@ class _RegisterCarPageState
               decoration: InputDecoration(
                   hintText: "ano".i18n(),
                   hintStyle: TextStyle(
-                    color: Colors.grey[700],
+                    color: Colors.white,
                     fontSize: 20,
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -234,12 +233,11 @@ class _RegisterCarPageState
                   hoverColor: Colors.yellow.shade200,
                   contentPadding: EdgeInsets.all(15),
                   prefixIcon: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: SvgPicture.asset(
-                      'lib/assets/images/locker.svg',
-                      // color: _theme.colorScheme.secondary,
-                    ),
-                  )),
+                      padding: const EdgeInsets.all(8),
+                      child: Icon(
+                        Icons.date_range,
+                        color: Colors.white,
+                      ))),
             ),
           ),
         ),
@@ -260,7 +258,7 @@ class _RegisterCarPageState
               decoration: InputDecoration(
                   hintText: "placa".i18n(),
                   hintStyle: TextStyle(
-                    color: Colors.grey[700],
+                    color: Colors.white,
                     fontSize: 20,
                   ),
                   enabledBorder: OutlineInputBorder(
@@ -282,9 +280,9 @@ class _RegisterCarPageState
                   contentPadding: EdgeInsets.all(15),
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8),
-                    child: SvgPicture.asset(
-                      'lib/assets/images/locker.svg',
-                      // color: _theme.colorScheme.secondary,
+                    child: Icon(
+                      Icons.card_membership,
+                      color: Colors.white,
                     ),
                   )),
             ),
